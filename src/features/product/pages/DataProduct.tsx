@@ -2,21 +2,8 @@ import { Button, TextInput } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { TableProduct } from "../components/table/TableProduct";
-import { Product } from "../types/product";
 
 export const DataProduct = () => {
-    var items: Product[] = [
-        {
-            product_id: 1,
-            no: 1,
-            name: "Pesan",
-            description: 'Sedang dilakukan proses pemesanan',
-            created_at: new Date('2024-03-28T12:00:00'),
-            updated_at: new Date('2024-03-28T12:00:00'),
-            path_image: "image/gambar.png",
-            category: "Videotron",
-        },
-      ];
   const navigate = useNavigate ();
   return (
     <main>
@@ -37,7 +24,7 @@ export const DataProduct = () => {
       </section>
 
       <section className="mb-8 w-full">
-        <TableProduct items={items}/>
+        <TableProduct />
       </section>
     </main>
   );

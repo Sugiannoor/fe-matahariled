@@ -2,16 +2,24 @@ import { Table } from "@/components/table/Table";
 import { ActionIcon } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { notifications } from "@mantine/notifications";
-import { IconEdit, IconInfoCircle, IconTrash } from "@tabler/icons-react";
-import React from "react";
+import { IconCheck, IconEdit, IconInfoCircle, IconTrash, IconX } from "@tabler/icons-react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
-import { Product } from "../../types/product";
+import { ProductQuery } from "../../types/product";
+import { useProducts } from "../../api/getProducts";
+import { useDeleteProduct } from "../../api/deleteProduct";
 
 type props = {
   toolbar?: React.ReactNode;
-  items?: Product[];
-}
-export const TableProduct:React.FC<props> = ({toolbar, items}) => {
+}&ProductQuery
+export const TableProduct:React.FC<props> = ({toolbar, ...props}) => {
+  const [params, setParams] = useState<ProductQuery>({
+    page: 1,
+    limit: 10,
+    search: '',
+  });
+  const { data, isLoading } = useProducts({ params: { ...params, ...props } });
+  const deleteProduct = useDeleteProduct();
 //   function handleUpdate (promoOnline: PromoOnlineDTO) {
 //     modals.open({
 //       title: 'Update BBM',
@@ -30,19 +38,27 @@ export const TableProduct:React.FC<props> = ({toolbar, items}) => {
       children: <div className="text-md">Apakah anda yakin untuk menghapus Product ini?</div>,
       confirmProps: { color: 'red' },
       centered: true,
-      onConfirm() {
-        notifications.show({
-          title: 'Success',
-          message: 'Product berhasil dihapus',
-          color: 'green',
-        });
-      },
-      onCancel() {
-        notifications.show({
-          title: 'Gagal',
-          message: 'Product gagal dihapus',
-          color: 'red',
-        });
+      onConfirm: async () => {
+        await deleteProduct.mutateAsync({ id },
+          {
+            onSuccess: () => {
+              notifications.show({
+                message: 'Product berhasil dihapus',
+                color: 'green',
+                icon: <IconCheck />,
+              });
+              modals.closeAll();
+            },
+            onError: () => {
+              notifications.show({
+                message: 'Product tidak bisa dihapus',
+                color: 'red',
+                icon: <IconX />,
+              });
+              modals.closeAll();
+            },
+          }
+        );
       },
       
     })
@@ -51,19 +67,30 @@ export const TableProduct:React.FC<props> = ({toolbar, items}) => {
     <div>
       <Table
         title="Table Product"
-        items={items}
+        items={data?.data}
+        loading={isLoading}
+        metadata={{
+          count: data?.data.length || 10,
+          limit: params.limit || 10,
+          page: params.page || 10,
+          total: data?.total || 10,
+        }}
+        onPageChange={(page) => {
+          setParams({ ...params, page });
+        }}
         toolbar={toolbar}
-        renderItem={(items) => (
+        renderItem={(items, i) => (
           <tr key={items.product_id}>
-            <td>{items.no}</td>
+            <td>{(params.limit ?? 5) * ((params.page ?? 0) - 1) + i + 1}</td>
             <td>{items.name}</td>
             <td>{items.category}</td>
             <td>{dayjs(items.created_at).format('D MMMM YYYY H:mm')}</td>
+            <td>{dayjs(items.updated_at).format('D MMMM YYYY H:mm')}</td>
             <td>
             <div className="flex items-center space-x-2">
                 <ActionIcon
                   variant="subtle"
-                  title="Update Promo"
+                  title="Update Product"
                   color="blue"
                   radius="lg"
                 >
@@ -71,7 +98,7 @@ export const TableProduct:React.FC<props> = ({toolbar, items}) => {
                 </ActionIcon>
                 <ActionIcon
                   variant="subtle"
-                  title="Hapus Promo"
+                  title="Hapus Product"
                   color="red"
                   radius="lg"
                   onClick={()=>handleDelete(items.product_id)}
@@ -90,10 +117,11 @@ export const TableProduct:React.FC<props> = ({toolbar, items}) => {
           </tr>
         )}
         header={[
-          "No",
+          "#",
           "Nama Product",
           "Jenis Produk",
           "Created at",
+          "Updated at",
           "Aksi",
         ]}
       />

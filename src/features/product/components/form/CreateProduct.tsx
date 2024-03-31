@@ -2,18 +2,48 @@ import { Tiptap } from "@/components/tiptap/TipTap";
 import { Button, FileInput, Select, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconChecklist, IconPhoto } from "@tabler/icons-react";
+import { useCreateProduct } from "../../api/createProduct";
+import { notifications } from "@mantine/notifications";
+import { useNavigate } from "react-router-dom";
 
 export const CreateProduct = () => {
+  const navigate = useNavigate ()
+  const {mutateAsync, isLoading } = useCreateProduct();
   const form = useForm({
     initialValues: {
       name: '',
       description: '',
-      thumbnail: undefined,
-      category: '',
+      file: undefined,
+      category_id: 0,
     },
   });
+  const handleSubmit = form.onSubmit(async (values) => {
+    await mutateAsync(
+      {
+        data: {
+          ...values,
+        },
+      },
+      {
+        onSuccess: () => {
+          notifications.show({
+            color: 'green',
+            message: 'Produk berhasil dibuat',
+          });
+          navigate("/admin/product")
+        },
+        onError: ({ response }) => {
+          form.setErrors((response?.data as any).errors);
+          notifications.show({
+            color: 'red',
+            message: 'Komplain gagal dibuat',
+          });
+        },
+      }
+    );
+  });
   return (
-    <form onSubmit={form.onSubmit((v)=> console.log(v))}>
+    <form onSubmit={handleSubmit}>
       <div className="grid grid-cols-2 gap-5">
         <TextInput
           label="Nama Product"
@@ -26,24 +56,28 @@ export const CreateProduct = () => {
           label="Kategori"
           placeholder="Pilih Kategori"
           required
-          data={["CCTV", "Videotron"]}
-          {...form.getInputProps("category")}
+          data={[{
+            label:"CCTV",
+            value: "1"
+          }]}
+          {...form.getInputProps("category_id")}
         />
       </div>
       <FileInput
         label="Thumbnail"
         placeholder="Pilih Thumbnail"
         my="md"
+        required
         accept="image/png, image/jpeg, image/webp"
         leftSection={<IconPhoto/>}
-        {...form.getInputProps('thumbnail')}
+        {...form.getInputProps('file')}
       />
       <Tiptap 
       value={form.values['description']}
       onChange={(v)=> form.setFieldValue('description', v)}
       />
       <div className="flex justify-end gap-2">
-        <Button mt="md" type="submit" leftSection={<IconChecklist/>}>
+        <Button mt="md" type="submit" leftSection={<IconChecklist/>} loading={isLoading}>
           Simpan
         </Button>
       </div>

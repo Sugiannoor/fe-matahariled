@@ -1,5 +1,5 @@
 
-import { UserDTO, UserTableType } from "../types/user";
+import { UserTableType } from "../types/user";
 import { GeneralResponse } from "@/types/api";
 import { MutationConfig} from "@/lib/react-query";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
