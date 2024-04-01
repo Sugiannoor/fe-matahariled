@@ -1,6 +1,5 @@
 import React from "react";
 import { Contract } from "../types/contract";
-import { Badge } from "@mantine/core";
 
 type props = {
   contract: Contract;
@@ -8,11 +7,9 @@ type props = {
 
 export const DetailContract: React.FC<props> = ({ contract }) => {
   const {
-    no,
-    contract_code,
     title,
-    product_name,
-    customer_name,
+    product,
+    username,
     description,
     start_date,
     end_date,
@@ -23,20 +20,12 @@ export const DetailContract: React.FC<props> = ({ contract }) => {
       <table style={{ borderCollapse: "collapse", width: "100%" }}>
         <tbody>
           <tr>
-            <td style={{ border: "1px solid gray", padding: "8px" }}>No</td>
-            <td style={{ border: "1px solid gray", padding: "8px" }}>{no}</td>
-          </tr>
-          <tr>
             <td style={{ border: "1px solid gray", padding: "8px" }}>
-              Kode Kontrak
+              Judul Kontrak
             </td>
             <td style={{ border: "1px solid gray", padding: "8px" }}>
-              {contract_code}
+              {title}
             </td>
-          </tr>
-          <tr>
-            <td style={{ border: "1px solid gray", padding: "8px" }}>Judul Kontrak</td>
-            <td style={{ border: "1px solid gray", padding: "8px" }}>{title}</td>
           </tr>
           <tr>
             <td style={{ border: "1px solid gray", padding: "8px" }}>
@@ -59,7 +48,7 @@ export const DetailContract: React.FC<props> = ({ contract }) => {
               Nama Customer
             </td>
             <td style={{ border: "1px solid gray", padding: "8px" }}>
-              {customer_name}
+              {username}
             </td>
           </tr>
           <tr>
@@ -67,14 +56,18 @@ export const DetailContract: React.FC<props> = ({ contract }) => {
               Nama Produk
             </td>
             <td style={{ border: "1px solid gray", padding: "8px" }}>
-              {product_name}
+              {product.map((item, index) => (
+                <div key={index}>{item.name}</div>
+              ))}
             </td>
           </tr>
           <tr>
             <td style={{ border: "1px solid gray", padding: "8px" }}>
-             Deskripsi
+              Deskripsi
             </td>
-            <td style={{ border: "1px solid gray", padding: "8px" }}>{description}</td>
+            <td style={{ border: "1px solid gray", padding: "8px" }}>
+              {description}
+            </td>
           </tr>
         </tbody>
       </table>

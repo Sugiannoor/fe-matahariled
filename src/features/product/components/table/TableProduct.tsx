@@ -17,6 +17,7 @@ export const TableProduct:React.FC<props> = ({toolbar, ...props}) => {
     page: 1,
     limit: 10,
     search: '',
+    category_id: undefined
   });
   const { data, isLoading } = useProducts({ params: { ...params, ...props } });
   const deleteProduct = useDeleteProduct();

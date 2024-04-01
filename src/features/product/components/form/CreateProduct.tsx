@@ -5,10 +5,17 @@ import { IconChecklist, IconPhoto } from "@tabler/icons-react";
 import { useCreateProduct } from "../../api/createProduct";
 import { notifications } from "@mantine/notifications";
 import { useNavigate } from "react-router-dom";
+import { useLabelCategory } from "../../api/getLabelCategory";
 
 export const CreateProduct = () => {
   const navigate = useNavigate ()
   const {mutateAsync, isLoading } = useCreateProduct();
+  const {data, isLoading: cLoading} = useLabelCategory()
+
+  const convertedLabel = data?.map ((item)=> ({
+    value: item.value.toString(),
+    label: item.label
+  }))
   const form = useForm({
     initialValues: {
       name: '',
@@ -56,10 +63,8 @@ export const CreateProduct = () => {
           label="Kategori"
           placeholder="Pilih Kategori"
           required
-          data={[{
-            label:"CCTV",
-            value: "1"
-          }]}
+          disabled={cLoading}
+          data={convertedLabel}
           {...form.getInputProps("category_id")}
         />
       </div>

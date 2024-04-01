@@ -8,7 +8,7 @@ export type Product = {
     category_id: number;
     file_id: number;
     description: string;
-    path_image: string;
+    path_file: string;
 
 
 }& GeneralEntity
@@ -21,6 +21,5 @@ export type ProductDTO = {
 }
 
 export type ProductQuery = {
-    category?: string;
-    role?: string
+    category_id?: number;
   } & Pagination;

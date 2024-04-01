@@ -35,7 +35,7 @@ export const DataUser = () => {
           <div className="col-span-12 md:col-span-6 lg:col-span-3">
             <TextInput
               leftSection={<IconSearch size={16} />}
-              placeholder="Cari berdasarkan Username / Nama"
+              placeholder="Cari nama / username"
               value={query.search}
               onChange={(v) => setQuery({ ...query, search: v.target.value })}
             />
