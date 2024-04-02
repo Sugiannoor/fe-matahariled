@@ -37,7 +37,7 @@ export function LoginForm() {
           placeholder="Your password"
           mt="md"
           size="md"
-          required
+        required
           {...form.getInputProps('password')}
         />
         <Button fullWidth mt="xl" size="md" type="submit">
@@ -48,9 +48,8 @@ export function LoginForm() {
       <Text ta="center" mt="md">
         Don&apos;t have an account?{" "}
         <Anchor<"a">
-          href="#"
+          href="/register"
           fw={700}
-          onClick={(event) => event.preventDefault()}
         >
           Register
         </Anchor>

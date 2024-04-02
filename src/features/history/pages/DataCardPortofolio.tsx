@@ -1,19 +1,19 @@
 import { useDebouncedValue } from "@mantine/hooks";
 import { useState } from "react";
-import { ProductQuery } from "../types/product";
-import { CardProduct } from "../components/card/CardProduct";
 import { Select, TextInput } from "@mantine/core";
 import { IconCategory, IconSearch } from "@tabler/icons-react";
-import { useLabelCategory } from "../api/getLabelCategory";
+import { useLabelProducts } from "@/features/contract/api/getProductsLabel";
+import { HistoryQuery } from "../types/history";
+import { CardPortofolio } from "../components/card/CardPortofolio";
 
-export const DataCardProduct = () => {
-  const [query, setQuery] = useState<ProductQuery>({
+export const DataCardPortofolio = () => {
+  const [query, setQuery] = useState<HistoryQuery>({
     search: "",
-    category_id: undefined,
-    limit: 10,
+    product_id: undefined,
+    limit: 8,
   });
   const [params] = useDebouncedValue(query, 200);
-  const { data, isLoading } = useLabelCategory();
+  const { data, isLoading } = useLabelProducts();
 
   const convertedData = data?.map((item) => ({
     value: item.value.toString(), //
@@ -26,7 +26,7 @@ export const DataCardProduct = () => {
           <div className="max-w-xs w-full">
             <TextInput
               leftSection={<IconSearch size={16} />}
-              placeholder="Cari Nama Product"
+              placeholder="Cari Konten"
               value={query.search}
               onChange={(v) => setQuery({ ...query, search: v.target.value })}
             />
@@ -34,19 +34,19 @@ export const DataCardProduct = () => {
           <div className="max-w-xs">
             <Select
               leftSection={<IconCategory size={16} />}
-              placeholder="Pilih Kategory"
+              placeholder="Pilih Produk"
               data={convertedData}
-              value={query.category_id?.toString()}
+              value={query.product_id?.toString()}
               disabled={isLoading}
               onChange={(v) => {
-                const categoryId = v ? parseInt(v, 10) : undefined;
-                setQuery({ ...query, category_id: categoryId });
+                const productId = v ? parseInt(v, 10) : undefined;
+                setQuery({ ...query, product_id: productId });
               }}
               clearable
             />
           </div>
         </div>
-        <CardProduct {...params} />
+        <CardPortofolio {...params} />
       </section>
     </main>
   );

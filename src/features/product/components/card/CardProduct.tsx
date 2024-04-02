@@ -1,25 +1,40 @@
-import { Badge, Button,Card,Pagination, } from "@mantine/core"
+import { Badge, Button, Card, Pagination } from "@mantine/core";
 import { ProductQuery } from "../../types/product";
 import React, { useState } from "react";
 import { useProducts } from "../../api/getProducts";
 
 type Props = ProductQuery;
-export const CardProduct:React.FC<Props> = (props) => {
-    const [params, setParams] = useState<ProductQuery>({
-        page: 1,
-        limit: 8,
-        search: '',
-        sort: 'desc',
-        sort_by: 'created_at',
-      });
-      const { data, isLoading, isError } = useProducts({ params: { ...params, ...props } });
-    if (isLoading || isError)
+export const CardProduct: React.FC<Props> = (props) => {
+  const [params, setParams] = useState<ProductQuery>({
+    page: 1,
+    limit: 8,
+    search: "",
+    sort: "desc",
+    sort_by: "created_at",
+  });
+  const { data, isLoading, isError } = useProducts({
+    params: { ...params, ...props },
+  });
+  const convertHtmlToPlainText = (htmlString: string) => {
+    const parser = new DOMParser();
+    const parsedHtml = parser.parseFromString(htmlString, 'text/html');
+    return parsedHtml.body.textContent;
+  };
+
+  const products = data?.data.map((product) => ({
+    ...product,
+    description: convertHtmlToPlainText(product.description),
+  }));
+  if (isLoading || isError)
     return (
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {Array(4)
           .fill(0)
           .map((_, i) => (
-            <div key={`skp_${i}`} className="w-full bg-white rounded-lg overflow-hidden">
+            <div
+              key={`skp_${i}`}
+              className="w-full bg-white rounded-lg overflow-hidden"
+            >
               <div className="w-full aspect-video bg-gray-200 animate-pulse"></div>
               <div className="p-4">
                 <div className="h-5 w-20 bg-gray-200 animate-pulse rounded-lg mt-1 mb-2"></div>
@@ -36,35 +51,36 @@ export const CardProduct:React.FC<Props> = (props) => {
           ))}
       </div>
     );
-    
+
   return (
     <>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {data.data.map((product) => (
-          <Card key={product.product_id} className="w-full bg-white rounded-xl overflow-hidden shadow-md">
-              <div className="w-full aspect-video bg-gray-200 relative">
-                <img
-                  src={`http://127.0.0.1:8000${product.path_file}`}
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover object-center"
-                  onError={(e) => {
-                    e.currentTarget.src =
-                      "default.jpeg"
-                  }}
-                />
-              </div>
-            <div className="p-4">
-                <Badge className="line-clamp-1 text-sm text-primary-600 mb-1">{product.category}</Badge>
-                <h2 className="line-clamp-2 text-base font-bold mb-1 hover:underline">
-                  {product.name}
-                </h2>
-                <p className="text-sm line-clamp-2 text-gray-600">
-                  {product.category}
-                </p>
-
+        {products?.map((product) => (
+          <Card
+            key={product.product_id}
+            className="w-full bg-white rounded-xl overflow-hidden shadow-md"
+          >
+            <div className="w-full aspect-video bg-gray-200 relative">
+              <img
+                src={`http://127.0.0.1:8000${product.path_file}`}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                onError={(e) => {
+                  e.currentTarget.src = "default.jpeg";
+                }}
+              />
             </div>
-            <Button variant="outline" color="blue">
-                Detail
+            <div className="mt-4">
+              <Badge>{product.category}</Badge>
+              <h2 className="line-clamp-2 text-xl font-bold my-1">
+                {product.name}
+              </h2>
+              <p className="text-md mt-4 line-clamp-2 text-gray-600">
+                {product.description}
+              </p>
+            </div>
+            <Button variant="outline" color="blue" mt="md">
+              Detail
             </Button>
           </Card>
         ))}
@@ -73,7 +89,8 @@ export const CardProduct:React.FC<Props> = (props) => {
       {data.data.length == 0 && (
         <div className="col-span-12 flex flex-col items-center justify-center py-24 mx-auto max-w-md">
           <p className="text-lg font-bold mb-4 text-center">
-            Belum Ada Product</p>
+            Belum Ada Product
+          </p>
         </div>
       )}
 
@@ -87,6 +104,6 @@ export const CardProduct:React.FC<Props> = (props) => {
       </div>
     </>
 
-//   pagination dll
-  )
-}
+    //   pagination dll
+  );
+};

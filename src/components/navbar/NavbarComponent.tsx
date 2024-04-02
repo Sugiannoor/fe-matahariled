@@ -6,7 +6,6 @@ import {
   Text,
   SimpleGrid,
   ThemeIcon,
-  Anchor,
   Divider,
   Center,
   Box,
@@ -28,7 +27,7 @@ import {
   IconChevronDown,
 } from '@tabler/icons-react';
 import classes from './navbar.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const mockdata = [
   {
@@ -67,6 +66,7 @@ export function NavbarComponent() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
+  const navigate = useNavigate()
 
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
@@ -147,10 +147,10 @@ export function NavbarComponent() {
 
           <Group visibleFrom="sm">
             <Link to={'login'}>
-            <Button variant="default">Log in</Button>
+            <Button >Log in</Button>
             </Link>
             <Link to={'/register'}>
-            <Button>Sign up</Button>
+            <Button variant="default">Sign up</Button>
             </Link>
           </Group>
 
@@ -195,8 +195,8 @@ export function NavbarComponent() {
           <Divider my="sm" />
 
           <Group justify="center" grow pb="xl" px="md">
-            <Button variant="default">Log in</Button>
-            <Button>Sign up</Button>
+            <Button onClick={()=> navigate("/login")}>Log in</Button>
+            <Button variant="default" onClick={()=> navigate("/login")}>Sign up</Button>
           </Group>
         </ScrollArea>
       </Drawer>

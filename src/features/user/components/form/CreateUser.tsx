@@ -29,12 +29,16 @@ export const CreateUser = () => {
         onSuccess: () => {
           notifications.show({
             color: "green",
-            message: "Komplain berhasil dibuat",
+            message: "Pengguna Berhasil dibuat",
           });
           modals.closeAll();
         },
         onError: ({ response }) => {
           form.setErrors((response?.data as any).errors);
+          notifications.show({
+            color: "red",
+            message: "Pengguna Gagal dibuat",
+          });
         },
       }
     );
@@ -89,7 +93,7 @@ export const CreateUser = () => {
       />
 
       <div className="flex justify-end gap-2">
-        <Button mt="md" type="submit" leftSection={<IconChecklist />}>
+        <Button mt="md" type="submit" loading={isLoading} leftSection={<IconChecklist />}>
           Simpan
         </Button>
       </div>
