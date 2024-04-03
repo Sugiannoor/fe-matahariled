@@ -1,20 +1,25 @@
-import { Button, PasswordInput, Select, TextInput } from "@mantine/core";
+import { Button, Select, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { IconChecklist } from "@tabler/icons-react";
-import { useCreateUser } from "../../api/createUser";
 import { modals } from "@mantine/modals";
+import { UserTableType } from "../../types/user";
+import React from "react";
+import { useUpdateUser } from "../../api/updateUser";
 
-export const CreateUser = () => {
-  const { mutateAsync, isLoading } = useCreateUser();
+type props = {
+    user: UserTableType
+}
+export const UpdateUser:React.FC<props> = ({user}) => {
+  const { mutateAsync, isLoading } = useUpdateUser();
   const form = useForm({
     initialValues: {
-      full_name: "",
-      username: "",
-      email: "",
-      password: "",
-      phone_number: "",
-      role: "",
+      user_id: user.user_id,
+      full_name: user.full_name,
+      username: user.username,
+      email: user.email,
+      phone_number: user.phone_number,
+      role: user.role,
     },
   });
 
@@ -29,7 +34,7 @@ export const CreateUser = () => {
         onSuccess: () => {
           notifications.show({
             color: "green",
-            message: "Pengguna Berhasil dibuat",
+            message: "Pengguna Berhasil diupdate",
           });
           modals.closeAll();
         },
@@ -37,7 +42,7 @@ export const CreateUser = () => {
           form.setErrors((response?.data as any).errors);
           notifications.show({
             color: "red",
-            message: "Pengguna Gagal dibuat",
+            message: "Pengguna Gagal diupdate",
           });
         },
       }
@@ -68,14 +73,6 @@ export const CreateUser = () => {
         required
         {...form.getInputProps("email")}
       />
-      <PasswordInput
-        label="Password"
-        type="password"
-        placeholder="Password User"
-        mt="md"
-        required
-        {...form.getInputProps("password")}
-      />
       <TextInput
         label="Nomor Telphone"
         mt="md"
@@ -88,6 +85,7 @@ export const CreateUser = () => {
         label="Role"
         mt="md"
         placeholder="Pilih Role"
+        required
         data={["Customer", "Admin", "Superadmin"]}
         {...form.getInputProps("role")}
       />

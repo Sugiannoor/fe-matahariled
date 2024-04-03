@@ -5,9 +5,10 @@ import { notifications } from "@mantine/notifications";
 import { IconCheck, IconEdit, IconInfoCircle, IconTrash, IconX } from "@tabler/icons-react";
 import React, { useState } from "react";
 import dayjs from "dayjs";
-import { UserQuery } from "../../types/user";
+import { UserQuery, UserTableType } from "../../types/user";
 import { useUsers } from "../../api/getUsers";
 import { useDeleteUser } from "../../api/deleteUser";
+import { UpdateUser } from "../form/UpdateUser";
 
 type props = {
   toolbar?: React.ReactNode;
@@ -22,16 +23,15 @@ export const TableUser:React.FC<props> = ({toolbar, ...props}) => {
   const { data, isLoading } = useUsers({ params: { ...params, ...props } });
   const deleteMutation = useDeleteUser ()
 
-//   function handleUpdate (promoOnline: PromoOnlineDTO) {
-//     modals.open({
-//       title: 'Update BBM',
-//       children: (
-//         <UpdatePromoOnline
-//         promoOnline={promoOnline}
-//         />
-//       ),
-//     });
-// }
+  function handleUpdate (user: UserTableType) {
+    modals.open({
+      title: 'Update Pengguna',
+      size: "lg",
+      children: (
+        <UpdateUser user={user} />
+      ),
+    });
+}
 
   const handleDelete = (id: number, username: string) => {
     modals.openConfirmModal ({
@@ -84,6 +84,7 @@ export const TableUser:React.FC<props> = ({toolbar, ...props}) => {
         renderItem={(items, i) => (
           <tr key={items.user_id}>
             <td>{(params.limit ?? 5) * ((params.page ?? 0) - 1) + i + 1}</td>
+            <td>{items.full_name}</td>
             <td>{items.username}</td>
             <td>{items.email}</td>
             <td>{items.phone_number}</td>
@@ -96,6 +97,7 @@ export const TableUser:React.FC<props> = ({toolbar, ...props}) => {
                   title="Update User"
                   color="blue"
                   radius="lg"
+                  onClick={()=> handleUpdate (items)}
                 >
                   <IconEdit size={18} />
                 </ActionIcon>
@@ -121,6 +123,7 @@ export const TableUser:React.FC<props> = ({toolbar, ...props}) => {
         )}
         header={[
           "#",
+          "Nama",
           "Username",
           "email",
           "Nomor Telphone",

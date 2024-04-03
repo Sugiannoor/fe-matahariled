@@ -2,14 +2,19 @@ import { Tiptap } from "@/components/tiptap/TipTap";
 import { Button, FileInput, Select, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconChecklist, IconPhoto } from "@tabler/icons-react";
-import { useCreateProduct } from "../../api/createProduct";
 import { notifications } from "@mantine/notifications";
-import { useNavigate } from "react-router-dom";
 import { useLabelCategory } from "../../api/getLabelCategory";
+import { useUpdateProduct } from "../../api/updateProduct";
+import { Product } from "../../types/product";
+import React from "react";
+import { modals } from "@mantine/modals";
+import { Link } from "react-router-dom";
 
-export const CreateProduct = () => {
-  const navigate = useNavigate ()
-  const {mutateAsync, isLoading } = useCreateProduct();
+type props = {
+    product: Product
+}
+export const UpdateProduct:React.FC<props> = ({product}) => {
+  const {mutateAsync, isLoading } = useUpdateProduct();
   const {data, isLoading: cLoading} = useLabelCategory()
 
   const convertedLabel = data?.map ((item)=> ({
@@ -18,26 +23,29 @@ export const CreateProduct = () => {
   }))
   const form = useForm({
     initialValues: {
-      name: '',
-      description: '',
+      product_id: product.product_id,
+      name: product.name,
+      description: product.description,
       file: undefined,
-      category_id: 0,
+      category_id: String(product.category_id),
     },
   });
   const handleSubmit = form.onSubmit(async (values) => {
+    const category_id = Number(values.category_id)
     await mutateAsync(
       {
         data: {
           ...values,
+          category_id
         },
       },
       {
         onSuccess: () => {
           notifications.show({
             color: 'green',
-            message: 'Produk berhasil dibuat',
+            message: 'Produk berhasil diupdate',
           });
-          navigate("/admin/product")
+          modals.closeAll();
         },
         onError: ({ response }) => {
           form.setErrors((response?.data as any).errors);
@@ -68,6 +76,16 @@ export const CreateProduct = () => {
           {...form.getInputProps("category_id")}
         />
       </div>
+      {product.path_file && (
+        <Link to={`http://127.0.0.1:8000${product.path_file}`} target="_blank">
+            <div className="flex gap-1 mt-5">
+            <IconPhoto color="gray"/>
+            <span className="text-sm">
+            Thumbnail Sebelumnya
+            </span>
+            </div>
+        </Link>
+      )}
       <FileInput
         label="Thumbnail"
         placeholder="Pilih Thumbnail"

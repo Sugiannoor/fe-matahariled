@@ -5,9 +5,10 @@ import { notifications } from "@mantine/notifications";
 import { IconCheck, IconEdit, IconInfoCircle, IconTrash, IconX } from "@tabler/icons-react";
 import React, { useState } from "react";
 import dayjs from "dayjs";
-import { ProductQuery } from "../../types/product";
+import { Product, ProductQuery } from "../../types/product";
 import { useProducts } from "../../api/getProducts";
 import { useDeleteProduct } from "../../api/deleteProduct";
+import { UpdateProduct } from "../form/UpdateProduct";
 
 type props = {
   toolbar?: React.ReactNode;
@@ -21,16 +22,16 @@ export const TableProduct:React.FC<props> = ({toolbar, ...props}) => {
   });
   const { data, isLoading } = useProducts({ params: { ...params, ...props } });
   const deleteProduct = useDeleteProduct();
-//   function handleUpdate (promoOnline: PromoOnlineDTO) {
-//     modals.open({
-//       title: 'Update BBM',
-//       children: (
-//         <UpdatePromoOnline
-//         promoOnline={promoOnline}
-//         />
-//       ),
-//     });
-// }
+
+  function handleUpdate (product: Product) {
+    modals.open({
+      title: 'Update Product',
+      size: "lg",
+      children: (
+        <UpdateProduct product={product} />
+      ),
+    });
+}
   const handleDelete = (id: number) => {
     modals.openConfirmModal ({
       title: 'Hapus Product',
@@ -94,6 +95,7 @@ export const TableProduct:React.FC<props> = ({toolbar, ...props}) => {
                   title="Update Product"
                   color="blue"
                   radius="lg"
+                  onClick={()=>handleUpdate(items)}
                 >
                   <IconEdit size={18} />
                 </ActionIcon>

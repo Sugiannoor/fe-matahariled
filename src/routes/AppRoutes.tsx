@@ -2,6 +2,7 @@ import { UnderDevelopment } from "@/components/underdevelopment/UnderDevelopment
 import { LoginPage } from "@/features/auth/pages/LoginPage";
 import { RegisterPage } from "@/features/auth/pages/RegisterPage";
 import { DataContract } from "@/features/contract/pages/Contract";
+import { Dashboard } from "@/features/dashboard/pages/Dashboard";
 import { DataHistory } from "@/features/history/pages/DataHistory";
 import { CreateProduct } from "@/features/product/components/form/CreateProduct";
 import { DataProduct } from "@/features/product/pages/DataProduct";
@@ -22,7 +23,8 @@ export const AppRoutes = () => {
       <Route element={<ProfileLayout/>}>
         <Route path="/profile" element={<Profile/>}/>
       </Route>
-      <Route path="/admin" element={<AdminLayout />}>
+      <Route element={<AdminLayout />}>
+        <Route path="/admin/dashboard" element={<Dashboard/>} />
         <Route path="/admin/product" element={<DataProduct />} />
         <Route path="/admin/product/create" element={<CreateProduct />} />
         <Route path="/admin/user" element={<DataUser/>} />

@@ -4,6 +4,7 @@ import { GeneralEntity } from "@/types/general";
 export type UserTableType = {
     no: number;
     email: string;
+    full_name: string
     user_id: number;
     username: string;
     role: string;
@@ -11,10 +12,11 @@ export type UserTableType = {
 }&GeneralEntity
 
 export type UserDTO = {
+    user_id?: number;
     full_name: string;
     role: string;
     email: string;
-    password: string;
+    password?: string;
     username: string;
 }
 
