@@ -7,3 +7,5 @@ export type GeneralSelect = {
     value: number;
     label: string;
 }
+
+export type UserRole = "Customer" | "Admin" | "SuperAdmin"

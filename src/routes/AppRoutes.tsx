@@ -9,6 +9,7 @@ import { DataProduct } from "@/features/product/pages/DataProduct";
 import { Profile } from "@/features/profile/pages/Profile";
 import { DataUser } from "@/features/user/pages/DataUser";
 import { AdminLayout } from "@/layout/AdminLayout";
+import { AuthLayout } from "@/layout/AuthLayout";
 import { LandingLayout } from "@/layout/LandingLayout";
 import { ProfileLayout } from "@/layout/ProfileLayout";
 import { Home } from "@/pages/Home";
@@ -31,7 +32,9 @@ export const AppRoutes = () => {
         <Route path="/admin/contract" element={<DataContract/>} />
         <Route path="/admin/portofolio" element={<DataHistory/>} />
       </Route>
+      <Route element={<AuthLayout/>}>
       <Route path="/login" element={<LoginPage />} />
+      </Route>
       <Route path="/register" element={<RegisterPage />} />
       <Route path="*" element={<UnderDevelopment />} />
     </Routes>

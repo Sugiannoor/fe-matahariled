@@ -1,7 +1,11 @@
 import { NavbarComponent } from "@/components/navbar/NavbarComponent";
-import { Outlet } from "react-router-dom";
+import { useAuth } from "@/hooks/authHook";
+import { Navigate, Outlet } from "react-router-dom";
 
 export const LandingLayout = () => {
+  const {creds} = useAuth ();
+  if (creds?.role === "Admin" || creds?.role === "SuperAdmin" ) return <Navigate to="/dashboard" replace />;
+
   return (
     <div>
       <NavbarComponent />

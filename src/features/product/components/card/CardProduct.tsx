@@ -58,7 +58,7 @@ export const CardProduct: React.FC<Props> = (props) => {
         {products?.map((product) => (
           <Card
             key={product.product_id}
-            className="w-full bg-white rounded-xl overflow-hidden shadow-md"
+            className="w-full bg-white rounded-xl overflow-hidden shadow-md flex flex-col"
           >
             <div className="w-full aspect-video bg-gray-200 relative">
               <img
@@ -70,12 +70,12 @@ export const CardProduct: React.FC<Props> = (props) => {
                 }}
               />
             </div>
-            <div className="mt-4">
+            <div className="mt-4 flex-grow">
               <Badge>{product.category}</Badge>
               <h2 className="line-clamp-2 text-xl font-bold my-1">
                 {product.name}
               </h2>
-              <p className="text-md mt-4 line-clamp-2 text-gray-600">
+              <p className="text-md mt-4 text-gray-600 line-clamp-2">
                 {product.description}
               </p>
             </div>

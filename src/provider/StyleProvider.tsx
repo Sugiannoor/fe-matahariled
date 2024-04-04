@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-import { MantineProvider, MantineThemeOverride } from '@mantine/core';
+import { MantineProvider, MantineThemeOverride, Transition } from '@mantine/core';
 import { useLocation } from "react-router-dom";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
@@ -10,6 +10,8 @@ import '@mantine/notifications/styles.css';
 import '@mantine/core/styles.css';
 import '@/styles/global.css';
 import '@mantine/tiptap/styles.css';
+import '@mantine/carousel/styles.css';
+import { useWindowScroll } from "@mantine/hooks";
 
 const theme: MantineThemeOverride = {
   fontFamily: 'Poppins, sans-serif',
@@ -37,11 +39,11 @@ type props = {
     children: React.ReactNode
 }
 export const StyleProvider: React.FC<props> = ({ children }) => {
+  const [_, scrollTo] = useWindowScroll();
     const { pathname } = useLocation();
     
     useEffect(() => {
-      const root = document.getElementById('root');
-      root?.scrollTo(0, 0);
+      scrollTo({ y: 0 })
     }, [pathname]);
 
     return (

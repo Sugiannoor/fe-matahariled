@@ -8,6 +8,8 @@ import {
   Anchor,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { useLogin } from "../api/login";
+import { notifications } from "@mantine/notifications";
 
 export function LoginForm() {
   const form = useForm({
@@ -16,6 +18,26 @@ export function LoginForm() {
       password: "",
     },
   });
+
+  const loginMutation = useLogin ();
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    await loginMutation.mutateAsync(
+      { data: form.values },
+      {
+        onError: ({ response }) => {
+          if (response?.data.errors) {
+            form.setErrors(response.data.errors);
+          } else {
+            notifications.show({
+              message: "Periksa Kembali Email dan Password Anda",
+              color: 'red',
+            });
+          }
+        },
+      }
+    );
+  }
   return (
     <Paper radius={0} className="flex flex-col justify-center p-16 xl:p-36">
       <Title order={1} ta="center" mt="md">
@@ -24,7 +46,7 @@ export function LoginForm() {
       <Text mt="sm" mb={50} className="text-gray-500 text-center">
         Silahkan Login dengan akun anda
       </Text>
-      <form onSubmit={form.onSubmit((values)=>console.log(values))}>
+      <form onSubmit={handleSubmit}>
         <TextInput
           label="Email address"
           placeholder="hello@gmail.com"
@@ -40,7 +62,7 @@ export function LoginForm() {
         required
           {...form.getInputProps('password')}
         />
-        <Button fullWidth mt="xl" size="md" type="submit">
+        <Button fullWidth mt="xl" size="md" type="submit" loading={loginMutation.isLoading}>
           Login
         </Button>
       </form>
