@@ -30,6 +30,6 @@ export function CarauselBestProduct() {
 
   return (
   <>
-  <Carousel withIndicators className="max-h-[75vh]" loop controlSize={40}>{slides}</Carousel>;
+  <Carousel withIndicators className="max-h-[75vh]" loop controlSize={40}>{slides}</Carousel>
   </>)
 }

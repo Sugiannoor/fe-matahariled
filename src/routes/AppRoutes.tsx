@@ -13,6 +13,8 @@ import { AuthLayout } from "@/layout/AuthLayout";
 import { LandingLayout } from "@/layout/LandingLayout";
 import { ProfileLayout } from "@/layout/ProfileLayout";
 import { Home } from "@/pages/Home";
+import { Portofolio } from "@/pages/Portofolio";
+import { Product } from "@/pages/Product";
 import { Route, Routes } from "react-router-dom";
 
 export const AppRoutes = () => {
@@ -20,6 +22,8 @@ export const AppRoutes = () => {
     <Routes>
       <Route element={<LandingLayout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/portofolio" element={<Portofolio />} />
       </Route>
       <Route element={<ProfileLayout/>}>
         <Route path="/profile" element={<Profile/>}/>
