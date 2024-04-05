@@ -1,5 +1,5 @@
 import { Button, Text, Title } from "@mantine/core";
-import { IconColorSwatch, IconCube, IconLibrary, IconLibraryPlus, IconTemplate, IconTerminal } from "@tabler/icons-react";
+import { IconColorSwatch, IconCube, IconLibraryPlus, IconTemplate, IconTerminal } from "@tabler/icons-react";
 
 export const OurProduct = () => {
   return (

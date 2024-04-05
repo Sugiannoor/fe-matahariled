@@ -24,7 +24,7 @@ export function CarauselBestProduct() {
         <Title className="text-2xl lg:text-5xl text-[#FFBC07]">{content.title}</Title>
         <Text className="w-[50%] text-white mt-5">{content.description}</Text>
       </div>
-      <Image src={content.url} className="aspect-video max-h-[75vh]" />
+      <Image src={content.url} className="aspect-video max-h-[75vh]" loading="lazy" />
     </Carousel.Slide>
   ));
 

@@ -53,7 +53,7 @@ export function RegisterForm() {
   });
 
   return (
-    <Paper radius={0} className="flex flex-col justify-center p-16 xl:p-36">
+    <Paper radius={0} className="flex flex-col justify-center p-5 lg:p-16 max-h-[100vh] xl:p-36">
       <Title order={1} ta="center" mt="md">
         Selamat Datang Customer
       </Title>
