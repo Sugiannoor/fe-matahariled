@@ -6,7 +6,7 @@ import { Navigate, Outlet, useNavigate } from "react-router-dom";
 
 export const AdminLayout = () => {
   const navigate = useNavigate();
-  const {creds} = useAuth ();
+  const { creds } = useAuth();
   // if (creds?.role === "Customer") return <Navigate to="/" replace />;
   // if (!creds) return <Navigate to="/" replace />;
   return (
@@ -15,7 +15,11 @@ export const AdminLayout = () => {
         <Header />
       </div>
       <section className="flex justify-end">
-        <Button color="red" leftSection={<IconArrowLeft />} onClick={() => navigate(-1)}>
+        <Button
+          color="red"
+          leftSection={<IconArrowLeft />}
+          onClick={() => navigate(-1)}
+        >
           Kembali
         </Button>
       </section>
