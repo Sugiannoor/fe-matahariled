@@ -32,7 +32,7 @@ export async function login({ data }: LoginDTO): Promise<LoginResponse> {
   );
   const { role } = res.data.data.user;
 
-  if (role != "SuperAdmin" && role != "Customer" && role != "Admin")
+  if (role != "Superadmin" && role != "Customer" && role != "Admin")
     throw { message: "Anda tidak memiliki akses kedalam aplikasi ini" };
 
   return res.data;

@@ -1,12 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { AppProvider } from './provider/AppProvider.tsx'
-import { AppRoutes } from './routes/AppRoutes.tsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { AppProvider } from "./provider/AppProvider.tsx";
+import { AppRoutes } from "./routes/AppRoutes.tsx";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AppProvider>
-      <AppRoutes/>
+      <AppRoutes />
     </AppProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

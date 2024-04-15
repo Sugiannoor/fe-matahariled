@@ -5,5 +5,5 @@ export type User = {
     phone_number: string;
     email: string;
     address: string;
-    role: "Customer" | "SuperAdmin" | "Admin";
+    role: "Customer" | "Superadmin" | "Admin";
 }

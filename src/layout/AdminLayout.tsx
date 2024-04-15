@@ -6,7 +6,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 export const AdminLayout = () => {
   const navigate = useNavigate();
-  const {creds} = useAuth ();
+  const { creds } = useAuth();
   // if (creds?.role === "Customer") return <Navigate to="/" replace />;
   // if (!creds) return <Navigate to="/" replace />;
   return (
