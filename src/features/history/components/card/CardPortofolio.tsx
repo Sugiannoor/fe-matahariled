@@ -1,7 +1,9 @@
 import { Badge, Button,Card,Image,Pagination, Text, } from "@mantine/core"
 import React, { useState } from "react";
-import { HistoryQuery } from "../../types/history";
+import { HistoryDatatableType, HistoryQuery } from "../../types/history";
 import { useHistories } from "../../api/getHistories";
+import { PortofolioDetail } from "../../pages/PortofolioDetail";
+import { modals } from "@mantine/modals";
 
 type Props = HistoryQuery;
 export const CardPortofolio:React.FC<Props> = (props) => {
@@ -36,6 +38,13 @@ export const CardPortofolio:React.FC<Props> = (props) => {
           ))}
       </div>
     );
+    function handleDetail(history: HistoryDatatableType) {
+      modals.open({
+        title: "Detail Portofolio",
+        size: 'xl',
+        children: <PortofolioDetail history={history}/>
+      });
+    }
     
   return (
     <>
@@ -58,7 +67,7 @@ export const CardPortofolio:React.FC<Props> = (props) => {
          </Card.Section>
 
          <Card.Section mt="sm" p="sm">
-          <Button variant="outline" fullWidth>
+          <Button variant="outline" onClick={()=> handleDetail(items)} fullWidth>
             Detail
           </Button>
          </Card.Section>

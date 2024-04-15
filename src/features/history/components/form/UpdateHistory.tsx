@@ -2,7 +2,6 @@ import { Button, FileInput, Select, TextInput, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconChecklist, IconPhoto } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
-import { useCreateHistory } from "../../api/createHistory";
 import { useLabelProducts } from "@/features/contract/api/getProductsLabel";
 import { modals } from "@mantine/modals";
 import { HistoryDatatableType } from "../../types/history";
@@ -25,6 +24,8 @@ export const UpdateHistory: React.FC<props> = ({history}) => {
     initialValues: {
       title: history.title,
       description: history.description,
+      start_date: history.start_date,
+      end_date: history.end_date,
       file: undefined,
       product_id: String(history.product_id),
       history_id: history.history_id
@@ -75,6 +76,18 @@ export const UpdateHistory: React.FC<props> = ({history}) => {
           disabled={vLoading}
           data={convertedLabel}
           {...form.getInputProps("product_id")}
+        />
+        <TextInput
+        type="date"
+          label="Tanggal Kegiatan"
+          required
+          {...form.getInputProps("start_date")}
+        />
+        <TextInput
+        type="date"
+          label="Tanggal Selesai"
+          required
+          {...form.getInputProps("end_date")}
         />
       </div>
       {history.path_file && (

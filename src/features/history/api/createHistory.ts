@@ -14,6 +14,8 @@ export async function createHistory({ data }: HistoryReuest) {
 
 // Menambahkan field title
 formData.append("title", data.title);
+formData.append("start_date", data.start_date);
+formData.append("end_date", data.end_date);
 
 // Menambahkan field description
 formData.append("description", data.description);

@@ -5,6 +5,8 @@ export type HistoryDTO = {
   history_id?: number
   title: string;
   description: string;
+  start_date: string;
+  end_date: string;
   product_id: number;
   file?: File;
 };
@@ -21,6 +23,8 @@ export type HistoryDatatableType = {
     history_id: number
     product_id: number;
     title: string;
+    start_date: string
+    end_date: string;
     description: string;
     path_file: string;
     product_name: string

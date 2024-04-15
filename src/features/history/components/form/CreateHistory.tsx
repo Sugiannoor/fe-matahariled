@@ -17,6 +17,8 @@ export const CreateHistory = () => {
   const form = useForm({
     initialValues: {
       title: '',
+      start_date: '',
+      end_date: '',
       description: '',
       file: undefined,
       product_id: 0,
@@ -64,6 +66,18 @@ export const CreateHistory = () => {
           disabled={vLoading}
           data={convertedLabel}
           {...form.getInputProps("product_id")}
+        />
+        <TextInput
+        type="date"
+          label="Tanggal Pelaksanaan"
+          required
+          {...form.getInputProps("start_date")}
+        />
+        <TextInput
+        type="date"
+          label="Tanggal Selesai"
+          required
+          {...form.getInputProps("end_date")}
         />
       </div>
       <FileInput

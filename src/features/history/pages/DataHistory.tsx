@@ -43,7 +43,7 @@ export const DataHistory = () => {
           <div className="max-w-xs w-full">
             <TextInput
               leftSection={<IconSearch size={16} />}
-              placeholder="Cari "
+              placeholder="Cari Judul"
               value={query.search}
               onChange={(v) => setQuery({ ...query, search: v.target.value })}
             />

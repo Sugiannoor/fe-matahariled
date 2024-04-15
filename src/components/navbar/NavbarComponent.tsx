@@ -104,10 +104,13 @@ export function NavbarComponent() {
           <img className="h-10 w-30" src="/matahariled.png" alt="" />
 
           <Group h="100%" gap={0} visibleFrom="sm">
-            <a href="#" className={classes.link}>
+            <a href="/" className={classes.link}>
               Home
             </a>
-            <HoverCard
+            <a href="Product" className={classes.link}>
+              Product
+            </a>
+            {/* <HoverCard
               width={600}
               position="bottom"
               radius="md"
@@ -153,12 +156,10 @@ export function NavbarComponent() {
                   </Group>
                 </div>
               </HoverCard.Dropdown>
-            </HoverCard>
-            <a href="#" className={classes.link}>
-              Learn
-            </a>
-            <a href="#" className={classes.link}>
-              Academy
+            </HoverCard> */}
+
+            <a href="portofolio" className={classes.link}>
+              Portofolio
             </a>
           </Group>
           <Authorization role={["-Admin", "-Customer", "-Customer"]}>
@@ -220,10 +221,10 @@ export function NavbarComponent() {
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 
-          <a href="#" className={classes.link}>
+          <a href="/" className={classes.link}>
             Home
           </a>
-          <UnstyledButton className={classes.link} onClick={toggleLinks}>
+          {/* <UnstyledButton className={classes.link} onClick={toggleLinks}>
             <Center inline>
               <Box component="span" mr={5}>
                 Features
@@ -233,13 +234,13 @@ export function NavbarComponent() {
                 color={theme.colors.blue[6]}
               />
             </Center>
-          </UnstyledButton>
+          </UnstyledButton> */}
           <Collapse in={linksOpened}>{links}</Collapse>
-          <a href="#" className={classes.link}>
-            Learn
+          <a href="Product" className={classes.link}>
+            Product
           </a>
           <a href="#" className={classes.link}>
-            Academy
+            Portofolio
           </a>
 
           <Divider my="sm" />

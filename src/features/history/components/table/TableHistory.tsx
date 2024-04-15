@@ -9,6 +9,7 @@ import { useHistories } from "../../api/getHistories";
 import { useDeleteHistory } from "../../api/deleteHistory";
 import dayjs from "dayjs";
 import { UpdateHistory } from "../form/UpdateHistory";
+import { PortofolioDetail } from "../../pages/PortofolioDetail";
 
 
 type props = {
@@ -24,8 +25,9 @@ export const TableHistory: React.FC<props> = ({ toolbar, ...props }) => {
   const { data, isLoading } = useHistories({ params: { ...params, ...props } });
   function handleDetail(history: HistoryDatatableType) {
     modals.open({
-      title: "Detail Kontrak",
+      title: "Detail Portofolio",
       size: 'xl',
+      children: <PortofolioDetail history={history}/>
     });
   }
   function handleUpdate(history: HistoryDatatableType) {
@@ -94,6 +96,8 @@ export const TableHistory: React.FC<props> = ({ toolbar, ...props }) => {
             <td>{items.title}</td>
             <td>{items.product_name}</td>
             <td>{items.category_name}</td>
+            <td>{items.start_date}</td>
+            <td>{items.end_date}</td>
             <td>{dayjs(items.created_at).format('D MMMM YYYY H:mm')}</td>
             <td>{dayjs(items.updated_at).format('D MMMM YYYY H:mm')}</td>
             <td>
@@ -133,6 +137,8 @@ export const TableHistory: React.FC<props> = ({ toolbar, ...props }) => {
           "Judul",
           "Nama Produk",
           "Kategori Produk",
+          "Tanggal Kegiatan",
+          "Tanggal Selesai",
           "Created at",
           "Updated at",
           "Aksi",
