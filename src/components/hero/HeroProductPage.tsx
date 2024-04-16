@@ -18,7 +18,7 @@ export function HeroProductPage() {
               >
                 LED
               </Text>{" "}
-              Menggunakan Product Berkualitas
+              Menggunakan Produk Berkualitas
             </Title>
 
             <Text className={classes.description} mt={30}>

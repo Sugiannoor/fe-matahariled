@@ -6,6 +6,7 @@ import { Dashboard } from "@/features/dashboard/pages/Dashboard";
 import { DataHistory } from "@/features/history/pages/DataHistory";
 import { CreateProduct } from "@/features/product/components/form/CreateProduct";
 import { DataProduct } from "@/features/product/pages/DataProduct";
+import DetailProduct from "@/features/product/pages/DetailProduct";
 import { Profile } from "@/features/profile/pages/Profile";
 import { DataUser } from "@/features/user/pages/DataUser";
 import { AdminLayout } from "@/layout/AdminLayout";
@@ -23,21 +24,22 @@ export const AppRoutes = () => {
       <Route element={<LandingLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/product/detail/:id" element={<DetailProduct />} />
         <Route path="/portofolio" element={<Portofolio />} />
       </Route>
-      <Route element={<ProfileLayout/>}>
-        <Route path="/profile" element={<Profile/>}/>
+      <Route element={<ProfileLayout />}>
+        <Route path="/profile" element={<Profile />} />
       </Route>
       <Route element={<AdminLayout />}>
-        <Route path="/admin/dashboard" element={<Dashboard/>} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/product" element={<DataProduct />} />
         <Route path="/admin/product/create" element={<CreateProduct />} />
-        <Route path="/admin/user" element={<DataUser/>} />
-        <Route path="/admin/contract" element={<DataContract/>} />
-        <Route path="/admin/portofolio" element={<DataHistory/>} />
+        <Route path="/admin/user" element={<DataUser />} />
+        <Route path="/admin/contract" element={<DataContract />} />
+        <Route path="/admin/portofolio" element={<DataHistory />} />
       </Route>
-      <Route element={<AuthLayout/>}>
-      <Route path="/login" element={<LoginPage />} />
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={<LoginPage />} />
       </Route>
       <Route path="/register" element={<RegisterPage />} />
       <Route path="*" element={<UnderDevelopment />} />

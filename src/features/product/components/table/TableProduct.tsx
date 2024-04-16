@@ -2,7 +2,13 @@ import { Table } from "@/components/table/Table";
 import { ActionIcon } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { notifications } from "@mantine/notifications";
-import { IconCheck, IconEdit, IconInfoCircle, IconTrash, IconX } from "@tabler/icons-react";
+import {
+  IconCheck,
+  IconEdit,
+  IconInfoCircle,
+  IconTrash,
+  IconX,
+} from "@tabler/icons-react";
 import React, { useState } from "react";
 import dayjs from "dayjs";
 import { Product, ProductQuery } from "../../types/product";
@@ -12,49 +18,52 @@ import { UpdateProduct } from "../form/UpdateProduct";
 
 type props = {
   toolbar?: React.ReactNode;
-}&ProductQuery
-export const TableProduct:React.FC<props> = ({toolbar, ...props}) => {
+} & ProductQuery;
+export const TableProduct: React.FC<props> = ({ toolbar, ...props }) => {
   const [params, setParams] = useState<ProductQuery>({
     page: 1,
     limit: 10,
-    search: '',
-    category_id: undefined
+    search: "",
+    category_id: undefined,
   });
   const { data, isLoading } = useProducts({ params: { ...params, ...props } });
   const deleteProduct = useDeleteProduct();
 
-  function handleUpdate (product: Product) {
+  function handleUpdate(product: Product) {
     modals.open({
-      title: 'Update Product',
+      title: "Update Product",
       size: "lg",
-      children: (
-        <UpdateProduct product={product} />
-      ),
+      children: <UpdateProduct product={product} />,
     });
-}
+  }
   const handleDelete = (id: number) => {
-    modals.openConfirmModal ({
-      title: 'Hapus Product',
+    modals.openConfirmModal({
+      title: "Hapus Product",
       size: "md",
       radius: "md",
-      children: <div className="text-md">Apakah anda yakin untuk menghapus Product ini?</div>,
-      confirmProps: { color: 'red' },
+      children: (
+        <div className="text-md">
+          Apakah anda yakin untuk menghapus Product ini?
+        </div>
+      ),
+      confirmProps: { color: "red" },
       centered: true,
       onConfirm: async () => {
-        await deleteProduct.mutateAsync({ id },
+        await deleteProduct.mutateAsync(
+          { id },
           {
             onSuccess: () => {
               notifications.show({
-                message: 'Product berhasil dihapus',
-                color: 'green',
+                message: "Product berhasil dihapus",
+                color: "green",
                 icon: <IconCheck />,
               });
               modals.closeAll();
             },
             onError: () => {
               notifications.show({
-                message: 'Product tidak bisa dihapus',
-                color: 'red',
+                message: "Product tidak bisa dihapus",
+                color: "red",
                 icon: <IconX />,
               });
               modals.closeAll();
@@ -62,9 +71,8 @@ export const TableProduct:React.FC<props> = ({toolbar, ...props}) => {
           }
         );
       },
-      
-    })
-  }
+    });
+  };
   return (
     <div>
       <Table
@@ -86,16 +94,16 @@ export const TableProduct:React.FC<props> = ({toolbar, ...props}) => {
             <td>{(params.limit ?? 5) * ((params.page ?? 0) - 1) + i + 1}</td>
             <td>{items.name}</td>
             <td>{items.category}</td>
-            <td>{dayjs(items.created_at).format('D MMMM YYYY H:mm')}</td>
-            <td>{dayjs(items.updated_at).format('D MMMM YYYY H:mm')}</td>
+            <td>{dayjs(items.created_at).format("D MMMM YYYY H:mm")}</td>
+            <td>{dayjs(items.updated_at).format("D MMMM YYYY H:mm")}</td>
             <td>
-            <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2">
                 <ActionIcon
                   variant="subtle"
                   title="Update Product"
                   color="blue"
                   radius="lg"
-                  onClick={()=>handleUpdate(items)}
+                  onClick={() => handleUpdate(items)}
                 >
                   <IconEdit size={18} />
                 </ActionIcon>
@@ -104,15 +112,11 @@ export const TableProduct:React.FC<props> = ({toolbar, ...props}) => {
                   title="Hapus Product"
                   color="red"
                   radius="lg"
-                  onClick={()=>handleDelete(items.product_id)}
+                  onClick={() => handleDelete(items.product_id)}
                 >
                   <IconTrash size={18} />
                 </ActionIcon>
-                <ActionIcon
-                  variant="subtle"
-                  title="Detail Promo"
-                  radius="lg"
-                >
+                <ActionIcon variant="subtle" title="Detail Promo" radius="lg">
                   <IconInfoCircle size={18} />
                 </ActionIcon>
               </div>

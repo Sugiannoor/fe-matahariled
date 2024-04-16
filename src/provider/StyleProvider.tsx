@@ -1,57 +1,56 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
 
-import { MantineProvider, MantineThemeOverride, Transition } from '@mantine/core';
+import { MantineProvider, MantineThemeOverride } from "@mantine/core";
 import { useLocation } from "react-router-dom";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
 
-
-import '@mantine/notifications/styles.css';
-import '@mantine/core/styles.css';
-import '@/styles/global.css';
-import '@mantine/tiptap/styles.css';
-import '@mantine/carousel/styles.css';
+import "@mantine/notifications/styles.css";
+import "@mantine/core/styles.css";
+import "@/styles/global.css";
+import "@mantine/tiptap/styles.css";
+import "@mantine/carousel/styles.css";
 import { useWindowScroll } from "@mantine/hooks";
 
 const theme: MantineThemeOverride = {
-  fontFamily: 'Poppins, sans-serif',
+  fontFamily: "Poppins, sans-serif",
   headings: {
-    fontFamily: 'Poppins, sans-serif',
+    fontFamily: "Poppins, sans-serif",
   },
   components: {
     Button: {
       classNames: {
-        label: 'font-normal',
+        label: "font-normal",
       },
     },
     Modal: {
       styles: {
         title: {
-          fontWeight: 'bold',
-          fontSize: '20px'
+          fontWeight: "bold",
+          fontSize: "20px",
         },
       },
     },
   },
-}
+};
 
 type props = {
-    children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 export const StyleProvider: React.FC<props> = ({ children }) => {
   const [_, scrollTo] = useWindowScroll();
-    const { pathname } = useLocation();
-    
-    useEffect(() => {
-      scrollTo({ y: 0 })
-    }, [pathname]);
+  const { pathname } = useLocation();
 
-    return (
-      <MantineProvider theme={theme}>
-        <ModalsProvider labels={{confirm: 'Konfirmasi', cancel: 'Batal'}}>
+  useEffect(() => {
+    scrollTo({ y: 0 });
+  }, [pathname]);
+
+  return (
+    <MantineProvider theme={theme}>
+      <ModalsProvider labels={{ confirm: "Konfirmasi", cancel: "Batal" }}>
         {children}
-        </ModalsProvider>
-        <Notifications position="top-center" autoClose={2000}/>
-      </MantineProvider>
-    )
-}
+      </ModalsProvider>
+      <Notifications position="top-center" autoClose={2000} />
+    </MantineProvider>
+  );
+};

@@ -2,9 +2,11 @@ import { Badge, Button, Card, Pagination } from "@mantine/core";
 import { ProductQuery } from "../../types/product";
 import React, { useState } from "react";
 import { useProducts } from "../../api/getProducts";
+import { useNavigate } from "react-router-dom";
 
 type Props = ProductQuery;
 export const CardProduct: React.FC<Props> = (props) => {
+  const navigate = useNavigate();
   const [params, setParams] = useState<ProductQuery>({
     page: 1,
     limit: 8,
@@ -17,7 +19,7 @@ export const CardProduct: React.FC<Props> = (props) => {
   });
   const convertHtmlToPlainText = (htmlString: string) => {
     const parser = new DOMParser();
-    const parsedHtml = parser.parseFromString(htmlString, 'text/html');
+    const parsedHtml = parser.parseFromString(htmlString, "text/html");
     return parsedHtml.body.textContent;
   };
 
@@ -79,7 +81,12 @@ export const CardProduct: React.FC<Props> = (props) => {
                 {product.description}
               </p>
             </div>
-            <Button variant="outline" color="blue" mt="md">
+            <Button
+              variant="outline"
+              color="blue"
+              mt="md"
+              onClick={() => navigate(`/product/detail/${product.product_id}`)}
+            >
               Detail
             </Button>
           </Card>
@@ -103,7 +110,5 @@ export const CardProduct: React.FC<Props> = (props) => {
         />
       </div>
     </>
-
-    //   pagination dll
   );
 };

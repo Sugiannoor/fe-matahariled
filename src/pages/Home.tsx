@@ -12,19 +12,18 @@ import { DataCardProduct } from "@/features/product/pages/DataCardProduct";
 export const Home = () => {
   const HeroProducts: HeroProdType = {
     title: "Distributor dan Agen Produk Display",
-    description: "Matahari Teknologi Jaya menjadi perusahaan terkemuka yang mengedepankan inovasi teknologi dengan memberi solusi dan nillai tambah bagi mitra bisnis dan masyarakat luas",
-    src_image: "/loginImage.jpg"
-  }
+    description:
+      "Matahari Teknologi Jaya menjadi perusahaan terkemuka yang mengedepankan inovasi teknologi dengan memberi solusi dan nillai tambah bagi mitra bisnis dan masyarakat luas",
+    src_image: "/loginImage.jpg",
+  };
   return (
     <>
       <HeroImageRight />
-      <OurProduct/>
+      <OurProduct />
       <HeroProduct {...HeroProducts} />
       <CarauselProduct />
-      <DataCardProduct />
-      <DataCardPortofolio />
-      <ListProfileWeb/>
-      <CarauselBestProduct/>
+      <ListProfileWeb />
+      <CarauselBestProduct />
       <Footer />
       <ScrollToTop />
     </>

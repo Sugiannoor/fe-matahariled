@@ -158,7 +158,7 @@ export function NavbarComponent() {
               </HoverCard.Dropdown>
             </HoverCard> */}
 
-            <a href="portofolio" className={classes.link}>
+            <a href="/portofolio" className={classes.link}>
               Portofolio
             </a>
           </Group>
@@ -173,31 +173,31 @@ export function NavbarComponent() {
             </Group>
           </Authorization>
 
-          <Authorization role={["Admin","Customer","SuperAdmin"]}>
-          <Menu withArrow>
-            <Menu.Target>
-              <Avatar src={"/user_default.png"} />
-            </Menu.Target>
-            <Menu.Dropdown>
-              <Menu.Label>Menu Profile</Menu.Label>
-              <Menu.Item
-                leftSection={
-                  <IconUser style={{ width: rem(14), height: rem(14) }} />
-                }
-              >
-                Profile
-              </Menu.Item>
-              <Menu.Item
-                leftSection={
-                  <IconLogout style={{ width: rem(14), height: rem(14) }} />
-                }
-              >
-                Log Out
-              </Menu.Item>
+          <Authorization role={["Admin", "Customer", "SuperAdmin"]}>
+            <Menu withArrow>
+              <Menu.Target>
+                <Avatar src={"/user_default.png"} />
+              </Menu.Target>
+              <Menu.Dropdown>
+                <Menu.Label>Menu Profile</Menu.Label>
+                <Menu.Item
+                  leftSection={
+                    <IconUser style={{ width: rem(14), height: rem(14) }} />
+                  }
+                >
+                  Profile
+                </Menu.Item>
+                <Menu.Item
+                  leftSection={
+                    <IconLogout style={{ width: rem(14), height: rem(14) }} />
+                  }
+                >
+                  Log Out
+                </Menu.Item>
 
-              <Menu.Divider />
-            </Menu.Dropdown>
-          </Menu>
+                <Menu.Divider />
+              </Menu.Dropdown>
+            </Menu>
           </Authorization>
 
           <Burger

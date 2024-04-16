@@ -4,9 +4,9 @@ import { Loader, Title } from "@mantine/core";
 export const ListProfileWeb = () => {
   const { data } = useDashboard();
   return (
-    <section className="w-full">
-      <Title className="text-center mb-2">PROFILE WEBSITE</Title>
-      <div className="w-40 h-1 bg-black mx-auto rounded-xl"></div>
+    <section className="w-full my-5">
+      <div className="text-center mb-2 text-2xl font-bold">Profile Website</div>
+      <div className="w-32 h-1 bg-black mx-auto rounded-xl"></div>
       <div className="grid grid-cols-4 gap-5 bg- mt-10 w-[80%] mx-auto">
         <div className="p-4">
           <p>
