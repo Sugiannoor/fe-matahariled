@@ -5,6 +5,7 @@ export type Product = {
   product_id: number;
   name: string;
   category: string;
+  specification: string;
   category_id: number;
   file_id: number;
   description: string;
@@ -15,6 +16,7 @@ export type ProducById = {
   product_id: number;
   title: string;
   category: string;
+  specification: string;
   category_id: number;
   file_id: number;
   description: string;
@@ -25,6 +27,7 @@ export type ProductDTO = {
   product_id?: number;
   name: string;
   description: string;
+  specification: string;
   category_id: number;
   file: File | undefined;
 };

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useProduct } from "../api/getProductById";
 import { Badge, Card, Chip, Group, Image, Text } from "@mantine/core";
 import { CardGradient } from "../components/card/CardGradient";
+import dayjs from "dayjs";
 
 const DetailProduct = () => {
   const { id } = useParams();
@@ -27,29 +28,25 @@ const DetailProduct = () => {
       </div>
     );
   return (
-    <div className="p-32">
+    <div className="lg:p-32 p-4 pt-32">
       <Card withBorder radius="md" p={0} className="mb-5">
-        <Group wrap="nowrap" gap={20}>
+        <div className="flex flex-col lg:flex-row gap-5">
           <Image
             src={`http://127.0.0.1:8000${data.path_file}`}
             className="aspect-video max-h-72 w-full"
           />
-          <div>
-            <Badge
-              tt="uppercase"
-              fw={700}
-              size="xs"
-              className="text-sm p-3 bg-orange-400"
-            >
-              {data.category}
-            </Badge>
-            <Text mt="xs" mb="md" fw={600} className="text-4xl">
-              {data.title}
-            </Text>
+          <div className="p-10">
+            <div>
+              <Badge tt="uppercase" fw={700} bg="orange" size="md">
+                {data.category}
+              </Badge>
+              <h2 className="text-2xl font-bold my-1">{data.title}</h2>
+            </div>
+              <Text c="dimmed" fw={400} size="sm" mt="md">{data.description}</Text>
           </div>
-        </Group>
+        </div>
       </Card>
-      <CardGradient description={data.description} />
+      <CardGradient description={data.specification} />
     </div>
   );
 };

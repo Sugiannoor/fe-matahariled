@@ -2,7 +2,13 @@ import { Table } from "@/components/table/Table";
 import { ActionIcon } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { notifications } from "@mantine/notifications";
-import { IconCheck, IconEdit, IconInfoCircle, IconTrash, IconX } from "@tabler/icons-react";
+import {
+  IconCheck,
+  IconEdit,
+  IconInfoCircle,
+  IconTrash,
+  IconX,
+} from "@tabler/icons-react";
 import React, { useState } from "react";
 import { useContracts } from "../../api/getContracts";
 import { Contract, ContractQuery } from "../../types/contract";
@@ -25,15 +31,15 @@ export const TableContract: React.FC<props> = ({ toolbar, ...props }) => {
   function handleDetail(contract: Contract) {
     modals.open({
       title: "Detail Kontrak",
-      size: 'xl',
+      size: "xl",
       children: <DetailContract contract={contract} />,
     });
   }
   function handleUpdate(contract: Contract) {
     modals.open({
       title: "Edit Kontrak",
-      size: 'xl',
-      children: <UpdateContract contract={contract}/>,
+      size: "xl",
+      children: <UpdateContract contract={contract} />,
     });
   }
   const deleteContract = useDeleteContract();
@@ -50,20 +56,21 @@ export const TableContract: React.FC<props> = ({ toolbar, ...props }) => {
       confirmProps: { color: "red" },
       centered: true,
       onConfirm: async () => {
-        await deleteContract.mutateAsync({ id },
+        await deleteContract.mutateAsync(
+          { id },
           {
             onSuccess: () => {
               notifications.show({
-                message: 'Kontrak berhasil dihapus',
-                color: 'green',
+                message: "Kontrak berhasil dihapus",
+                color: "green",
                 icon: <IconCheck />,
               });
               modals.closeAll();
             },
             onError: () => {
               notifications.show({
-                message: 'Kontrak tidak bisa dihapus',
-                color: 'red',
+                message: "Kontrak tidak bisa dihapus",
+                color: "red",
                 icon: <IconX />,
               });
               modals.closeAll();
@@ -96,9 +103,9 @@ export const TableContract: React.FC<props> = ({ toolbar, ...props }) => {
             <td>{items.username}</td>
             <td>
               {" "}
-              {items.product.length > 1
+              {items.product?.length > 1
                 ? "Produk lebih dari 1 (Detail Only)"
-                : items.product.map((product, index) => index === 0 && product.name)}
+                : items.product?.[0]?.name ?? "Produk tidak tersedia"}
             </td>
             <td>{items.start_date}</td>
             <td>{items.end_date}</td>
@@ -109,7 +116,7 @@ export const TableContract: React.FC<props> = ({ toolbar, ...props }) => {
                   title="Update Kontrak"
                   color="blue"
                   radius="lg"
-                  onClick={()=> handleUpdate(items)}
+                  onClick={() => handleUpdate(items)}
                 >
                   <IconEdit size={18} />
                 </ActionIcon>

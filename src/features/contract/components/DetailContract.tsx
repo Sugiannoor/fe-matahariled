@@ -56,7 +56,7 @@ export const DetailContract: React.FC<props> = ({ contract }) => {
               Nama Produk
             </td>
             <td style={{ border: "1px solid gray", padding: "8px" }}>
-              {product.map((item, index) => (
+              {product && product.map((item, index) => (
                 <div key={index}>{item.name}</div>
               ))}
             </td>

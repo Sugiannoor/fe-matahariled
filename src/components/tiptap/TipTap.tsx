@@ -49,17 +49,7 @@ export const Tiptap:React.FC<props> = ({value, onChange}) =>  {
         </RichTextEditor.ControlsGroup>
 
         <RichTextEditor.ControlsGroup>
-          <RichTextEditor.H1 />
-          <RichTextEditor.H2 />
-          <RichTextEditor.H3 />
-          <RichTextEditor.H4 />
-        </RichTextEditor.ControlsGroup>
-
-        <RichTextEditor.ControlsGroup>
-          <RichTextEditor.Blockquote />
           <RichTextEditor.Hr />
-          <RichTextEditor.BulletList />
-          <RichTextEditor.OrderedList />
           <RichTextEditor.Subscript />
           <RichTextEditor.Superscript />
         </RichTextEditor.ControlsGroup>

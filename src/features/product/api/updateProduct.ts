@@ -17,6 +17,7 @@ formData.append("title", data.name);
 
 // Menambahkan field description
 formData.append("description", data.description);
+formData.append("specification", data.specification);
 
 // Menambahkan field file (jika ada)
 if (data.file) {

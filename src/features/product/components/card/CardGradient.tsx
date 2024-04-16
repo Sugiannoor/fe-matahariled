@@ -1,5 +1,5 @@
 import { Paper, Text, ThemeIcon, rem } from "@mantine/core";
-import { IconColorSwatch } from "@tabler/icons-react";
+import { IconSettings } from "@tabler/icons-react";
 import classes from "./CardGradient.module.css";
 
 type params = {
@@ -14,7 +14,7 @@ export function CardGradient({ description }: params) {
         variant="gradient"
         gradient={{ deg: 0, from: "pink", to: "orange" }}
       >
-        <IconColorSwatch
+        <IconSettings
           style={{ width: rem(28), height: rem(28) }}
           stroke={1.5}
         />

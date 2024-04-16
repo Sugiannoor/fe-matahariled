@@ -22,6 +22,8 @@ export const Home = () => {
       <OurProduct />
       <HeroProduct {...HeroProducts} />
       <CarauselProduct />
+      <DataCardProduct/>
+      <DataCardPortofolio/>
       <ListProfileWeb />
       <CarauselBestProduct />
       <Footer />

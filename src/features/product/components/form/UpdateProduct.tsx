@@ -1,5 +1,5 @@
 import { Tiptap } from "@/components/tiptap/TipTap";
-import { Button, FileInput, Select, TextInput } from "@mantine/core";
+import { Button, FileInput, Select, TextInput, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconChecklist, IconPhoto } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
@@ -25,6 +25,7 @@ export const UpdateProduct:React.FC<props> = ({product}) => {
     initialValues: {
       product_id: product.product_id,
       name: product.name,
+      specification: product.specification,
       description: product.description,
       file: undefined,
       category_id: String(product.category_id),
@@ -95,9 +96,16 @@ export const UpdateProduct:React.FC<props> = ({product}) => {
         leftSection={<IconPhoto/>}
         {...form.getInputProps('file')}
       />
+       <Textarea
+          label="Deskripsi"
+          mb="md"
+          placeholder="Ex. Videotron dengan LED Kualitas Tinggi"
+          required
+          {...form.getInputProps("description")}
+        />
       <Tiptap 
-      value={form.values['description']}
-      onChange={(v)=> form.setFieldValue('description', v)}
+      value={form.values['specification']}
+      onChange={(v)=> form.setFieldValue('specification', v)}
       />
       <div className="flex justify-end gap-2">
         <Button mt="md" type="submit" leftSection={<IconChecklist/>} loading={isLoading}>

@@ -4,13 +4,13 @@ import { MantineProvider, MantineThemeOverride } from "@mantine/core";
 import { useLocation } from "react-router-dom";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
+import { useWindowScroll } from "@mantine/hooks";
 
-import "@mantine/notifications/styles.css";
 import "@mantine/core/styles.css";
-import "@/styles/global.css";
+import "@mantine/notifications/styles.css";
 import "@mantine/tiptap/styles.css";
 import "@mantine/carousel/styles.css";
-import { useWindowScroll } from "@mantine/hooks";
+import "@/styles/global.css";
 
 const theme: MantineThemeOverride = {
   fontFamily: "Poppins, sans-serif",
