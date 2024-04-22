@@ -107,7 +107,7 @@ export function NavbarComponent() {
             <a href="/" className={classes.link}>
               Home
             </a>
-            <a href="Product" className={classes.link}>
+            <a href="/Product" className={classes.link}>
               Product
             </a>
             {/* <HoverCard
@@ -160,6 +160,9 @@ export function NavbarComponent() {
 
             <a href="/portofolio" className={classes.link}>
               Portofolio
+            </a>
+            <a href="/Videolist" className={classes.link}>
+              Video
             </a>
           </Group>
           <Authorization role={["-Admin", "-Customer", "-Customer"]}>
@@ -239,7 +242,7 @@ export function NavbarComponent() {
           <a href="Product" className={classes.link}>
             Product
           </a>
-          <a href="#" className={classes.link}>
+          <a href="portofolio" className={classes.link}>
             Portofolio
           </a>
 

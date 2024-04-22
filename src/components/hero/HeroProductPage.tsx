@@ -13,7 +13,7 @@ export function HeroProductPage() {
                 component="span"
                 inherit
                 variant="gradient"
-                gradient={{ from: "blue", to: "green" }}
+                gradient={{ from: "pink", to: "orange" }}
                 className={classes.title}
               >
                 LED

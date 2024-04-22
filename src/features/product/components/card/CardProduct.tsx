@@ -73,7 +73,7 @@ export const CardProduct: React.FC<Props> = (props) => {
               />
             </div>
             <div className="mt-4 flex-grow">
-              <Badge>{product.category}</Badge>
+              <Badge bg='orange'>{product.category}</Badge>
               <h2 className="line-clamp-2 text-xl font-bold my-1">
                 {product.name}
               </h2>
@@ -83,7 +83,7 @@ export const CardProduct: React.FC<Props> = (props) => {
             </div>
             <Button
               variant="outline"
-              color="blue"
+              color="black"
               mt="md"
               onClick={() => navigate(`/product/detail/${product.product_id}`)}
             >

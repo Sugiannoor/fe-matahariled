@@ -17,12 +17,14 @@ const theme: MantineThemeOverride = {
   headings: {
     fontFamily: "Poppins, sans-serif",
   },
+  
   components: {
     Button: {
       classNames: {
         label: "font-normal",
       },
     },
+    
     Modal: {
       styles: {
         title: {

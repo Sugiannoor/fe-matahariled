@@ -6,9 +6,9 @@ export const Product = () => {
     <main>
       {/* <CarauselBestProduct/> */}
       <HeroProductPage />
-      <div className="text-xl lg:text-4xl mt-10 font-bold text-center">
+      {/* <div className="text-xl lg:text-4xl mt-10 font-bold text-center">
         PRODUK KAMI
-      </div>
+      </div> */}
       <DataCardProduct />
     </main>
   );

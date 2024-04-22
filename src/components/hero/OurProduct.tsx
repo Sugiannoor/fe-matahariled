@@ -49,7 +49,7 @@ export const OurProduct = () => {
         </div>
       </div>
       </div>
-      <Button color="yellow" size="lg" className="bg-[#FFBC07] transition-all duration-300 mt-10 mx-auto block">
+      <Button size="lg" className="bg-p transition-all duration-300 mt-10 mx-auto block">
         Selengkapnya
       </Button>
     </div>

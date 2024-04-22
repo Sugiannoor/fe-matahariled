@@ -13,7 +13,7 @@ export function HeroImageRight() {
                 component="span"
                 inherit
                 variant="gradient"
-                gradient={{ from: "blue", to: "green" }}
+                gradient={{ from: "pink", to: "orange " }}
                 className={classes.title}
               >
                 Videotron

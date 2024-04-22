@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useProduct } from "../api/getProductById";
 import { Badge, Card, Chip, Group, Image, Text } from "@mantine/core";
 import { CardGradient } from "../components/card/CardGradient";
-import dayjs from "dayjs";
+import { TabsProduct } from "../Tabs/TabsProduct";
 
 const DetailProduct = () => {
   const { id } = useParams();
@@ -46,7 +46,7 @@ const DetailProduct = () => {
           </div>
         </div>
       </Card>
-      <CardGradient description={data.specification} />
+      <TabsProduct description={data.specification} />
     </div>
   );
 };

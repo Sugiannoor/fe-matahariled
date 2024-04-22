@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer/Footer";
 import { HeroImageRight } from "@/components/hero/Hero";
 import { HeroProdType, HeroProduct } from "@/components/hero/HeroProd";
 import { OurProduct } from "@/components/hero/OurProduct";
+import { VidoeHighlight } from "@/components/video/VidoeHighlight";
 import { DataCardPortofolio } from "@/features/history/pages/DataCardPortofolio";
 import { DataCardProduct } from "@/features/product/pages/DataCardProduct";
 
@@ -20,12 +21,12 @@ export const Home = () => {
     <>
       <HeroImageRight />
       <OurProduct />
+      <DataCardProduct/>
       <HeroProduct {...HeroProducts} />
       <CarauselProduct />
-      <DataCardProduct/>
-      <DataCardPortofolio/>
-      <ListProfileWeb />
-      <CarauselBestProduct />
+      <VidoeHighlight/>
+      {/* <ListProfileWeb /> */}
+      {/* <DataCardPortofolio/> */}
       <Footer />
       <ScrollToTop />
     </>

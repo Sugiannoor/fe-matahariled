@@ -25,7 +25,7 @@ export const HeroProduct: React.FC<HeroProdType> = ({
         <Title className="text-white text-3xl lg:text-5xl line  ">{title}</Title>
         <div className="mt-10 lg:mt-32">
           <Text className="line-clamp-5 text-gray-50 text-base lg:text-lg">{description}</Text>
-          <Button className="mt-8 text-black bg-[#FFBC07] transition-all duration-300" size="lg" color="yellow" onClick={() => navigate(`/${button_link}`)}>
+          <Button className="mt-8 transition-all duration-300" size="lg" onClick={() => navigate(`/${button_link}`)}>
             Contact Us
           </Button>
         </div>
