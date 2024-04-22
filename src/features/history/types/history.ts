@@ -8,6 +8,9 @@ export type HistoryDTO = {
   start_date: string;
   end_date: string;
   product_id: number;
+  user_id: number;
+  video_title?: string;
+  embed?: string;
   file?: File;
 };
 
@@ -28,6 +31,11 @@ export type HistoryDatatableType = {
     description: string;
     path_file: string;
     product_name: string
+    user_id: number;
+    user: string
+    video_id?: number;
+    video_title?: string
+    embed?: string;
     category_name: string
 }&GeneralEntity
 

@@ -16,6 +16,8 @@ export async function createHistory({ data }: HistoryReuest) {
 formData.append("title", data.title);
 formData.append("start_date", data.start_date);
 formData.append("end_date", data.end_date);
+if (data.video_title)formData.append("video_title", data.video_title);
+if (data.embed)formData.append("embed", data.embed);
 
 // Menambahkan field description
 formData.append("description", data.description);
@@ -27,6 +29,7 @@ if (data.file) {
 
 // Menambahkan field category_id
 formData.append("product_id", data.product_id.toString());
+formData.append("user_id", data.user_id.toString());
 
 // Kirim permintaan POST dengan FormData
 const res = await axios.post<GeneralResponse<History>>("/history", formData);

@@ -19,6 +19,8 @@ formData.append("end_date", data.end_date);
 
 // Menambahkan field description
 formData.append("description", data.description);
+if (data.video_title)formData.append("video_title", data.video_title);
+if (data.embed)formData.append("embed", data.embed);
 
 // Menambahkan field file (jika ada)
 if (data.file) {
@@ -27,6 +29,7 @@ if (data.file) {
 
 // Menambahkan field category_id
 formData.append("product_id", data.product_id.toString());
+formData.append("user_id", data.user_id.toString());
 
 // Kirim permintaan POST dengan FormData
 const res = await axios.put<GeneralResponse<History>>(`/history/${data.history_id}`, formData);

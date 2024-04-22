@@ -16,6 +16,7 @@ import { ProfileLayout } from "@/layout/ProfileLayout";
 import { Home } from "@/pages/Home";
 import { Portofolio } from "@/pages/Portofolio";
 import { Product } from "@/pages/Product";
+import { Video } from "@/pages/Video";
 import { Route, Routes } from "react-router-dom";
 
 export const AppRoutes = () => {
@@ -26,6 +27,7 @@ export const AppRoutes = () => {
         <Route path="/product" element={<Product />} />
         <Route path="/product/detail/:id" element={<DetailProduct />} />
         <Route path="/portofolio" element={<Portofolio />} />
+        <Route path="/videolist" element={<Video />} />
       </Route>
       <Route element={<ProfileLayout />}>
         <Route path="/profile" element={<Profile />} />

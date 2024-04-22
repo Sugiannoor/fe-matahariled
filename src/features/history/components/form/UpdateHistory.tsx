@@ -1,4 +1,4 @@
-import { Button, FileInput, Select, TextInput, Textarea } from "@mantine/core";
+import { Button, FileInput, Select, Text, TextInput, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconChecklist, IconPhoto } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
@@ -8,15 +8,21 @@ import { HistoryDatatableType } from "../../types/history";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useUpdateHistory } from "../../api/updateHistory";
+import { useLabelUser } from "@/features/contract/api/getUsersLabel";
 
 type props = {
     history: HistoryDatatableType
 }
 export const UpdateHistory: React.FC<props> = ({history}) => {
   const {mutateAsync, isLoading } = useUpdateHistory();
-  const {data, isLoading: vLoading} = useLabelProducts()
+  const {data, isLoading: vLoading} = useLabelProducts();
+  const {data:dataUser, isLoading: uLoading} = useLabelUser()
 
   const convertedLabel = data?.map ((item)=> ({
+    value: item.value.toString(),
+    label: item.label
+  }))
+  const convertedLabelUser = dataUser?.map ((item)=> ({
     value: item.value.toString(),
     label: item.label
   }))
@@ -28,17 +34,22 @@ export const UpdateHistory: React.FC<props> = ({history}) => {
       end_date: history.end_date,
       file: undefined,
       product_id: String(history.product_id),
-      history_id: history.history_id
+      history_id: history.history_id,
+      user_id: String(history.user_id),
+      video_title: history.video_title,
+      embed: history.embed
 
     },
   });
   const handleSubmit = form.onSubmit(async (values) => {
     const product_id = Number(values.product_id)
+    const user_id = Number(values.user_id)
     await mutateAsync(
       {
         data: {
           ...values,
-          product_id
+          product_id,
+          user_id
         },
       },
       {
@@ -90,6 +101,15 @@ export const UpdateHistory: React.FC<props> = ({history}) => {
           {...form.getInputProps("end_date")}
         />
       </div>
+      <Select
+        searchable
+        label="Pengguna"
+        placeholder="Pilih Pengguna"
+        required
+        disabled={uLoading}
+        data={convertedLabelUser}
+        {...form.getInputProps("user_id")}
+      />
       {history.path_file && (
         <Link to={`http://127.0.0.1:8000${history.path_file}`} target="_blank">
             <div className="flex gap-1 mt-5">
@@ -112,6 +132,18 @@ export const UpdateHistory: React.FC<props> = ({history}) => {
           label="Deskripsi"
           placeholder="Ex. Pemasangan Videotron di ..."
           {...form.getInputProps("description")}
+        />
+         <Text size="sm" c="dimmed" my="md" className="underline text-center"> Optional Features</Text>
+          <TextInput
+            label="Judul Video"
+            mb="md"
+            placeholder="Ex. Cara Pemasangan ..."
+            {...form.getInputProps("video_title")}
+          />
+        <Textarea
+          label="Embed"
+          placeholder="<iframe>...</iframe>"
+          {...form.getInputProps("embed")}
         />
      
       <div className="flex justify-end gap-2">

@@ -239,11 +239,14 @@ export function NavbarComponent() {
             </Center>
           </UnstyledButton> */}
           <Collapse in={linksOpened}>{links}</Collapse>
-          <a href="Product" className={classes.link}>
+          <a href="/Product" className={classes.link}>
             Product
           </a>
-          <a href="portofolio" className={classes.link}>
+          <a href="/portofolio" className={classes.link}>
             Portofolio
+          </a>
+          <a href="/video" className={classes.link}>
+            Video
           </a>
 
           <Divider my="sm" />
