@@ -1,12 +1,18 @@
-import { Button, PasswordInput, Select, TextInput } from "@mantine/core";
+import {
+  Button,
+  FileInput,
+  PasswordInput,
+  Select,
+  TextInput,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
-import { IconChecklist } from "@tabler/icons-react";
-import { useCreateUser } from "../../api/createUser";
+import { IconChecklist, IconPhoto } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
+import { useCreateUserForm } from "../../api/createUserForm";
 
 export const CreateUser = () => {
-  const { mutateAsync, isLoading } = useCreateUser();
+  const { mutateAsync, isLoading } = useCreateUserForm();
   const form = useForm({
     initialValues: {
       full_name: "",
@@ -14,6 +20,7 @@ export const CreateUser = () => {
       email: "",
       password: "",
       phone_number: "",
+      file: undefined,
       role: "",
     },
   });
@@ -91,9 +98,23 @@ export const CreateUser = () => {
         data={["Customer", "Admin", "Superadmin"]}
         {...form.getInputProps("role")}
       />
+      <FileInput
+        label="Foto Pengguna / Instansi terkait"
+        placeholder="Pilih Thumbnail"
+        my="md"
+        required
+        accept="image/png, image/jpeg, image/webp"
+        leftSection={<IconPhoto />}
+        {...form.getInputProps("file")}
+      />
 
       <div className="flex justify-end gap-2">
-        <Button mt="md" type="submit" loading={isLoading} leftSection={<IconChecklist />}>
+        <Button
+          mt="md"
+          type="submit"
+          loading={isLoading}
+          leftSection={<IconChecklist />}
+        >
           Simpan
         </Button>
       </div>

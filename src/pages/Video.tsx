@@ -1,12 +1,11 @@
-import { CardVideoList } from '@/features/video/components/CardVideoList'
-import { Title } from '@mantine/core'
-import React from 'react'
+import { CardVideoList } from "@/features/videos/components/CardVideoList";
+import { Title } from "@mantine/core";
 
 export const Video = () => {
   return (
-    <>
-    <Title>Video</Title>
-    <CardVideoList />
-    </>
-  )
-}
+    <div className="p-10 mt-20">
+      {/* <Title className="">Video</Title> */}
+      <CardVideoList />
+    </div>
+  );
+};
