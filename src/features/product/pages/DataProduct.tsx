@@ -6,6 +6,9 @@ import { useLabelCategory } from "../api/getLabelCategory";
 import { useState } from "react";
 import { ProductQuery } from "../types/product";
 import { useDebouncedValue } from "@mantine/hooks";
+import { modals } from "@mantine/modals";
+import { CreateTag } from "@/features/category/components/form/CreateTag";
+import { CreateCategory } from "@/features/category/components/form/CreateCategory";
 
 export const DataProduct = () => {
   const navigate = useNavigate();
@@ -23,6 +26,21 @@ export const DataProduct = () => {
     label: item.label || "",
   }));
 
+  const handleTag = ()=> {
+    modals.open ({
+      size: 'sm',
+      children: <CreateTag/>,
+      title: "Tambah Tag"
+    })
+  }
+  const handleCategory = ()=> {
+    modals.open ({
+      size: 'sm',
+      children: <CreateCategory/>,
+      title: "Tambah Category"
+    })
+  }
+
   return (
     <main>
       <h1 className="text-2xl lg:text-3xl text-gray-700 font-semibold">
@@ -30,7 +48,11 @@ export const DataProduct = () => {
       </h1>
       <div className="mt-3 w-16 h-[0.15rem] bg-primary-800 rounded-lg"></div>
       <section className="my-4 flex justify-between">
+        <div className="flex gap-2">
         <Button onClick={() => navigate("create")}>Tambah Data</Button>
+        <Button onClick={handleCategory}>Tambah Category</Button>
+        <Button onClick={handleTag}>Tambah Tag</Button>
+        </div>
         <div className="space-x-4 flex items-center">
           <div className="max-w-xs w-full">
             <TextInput
