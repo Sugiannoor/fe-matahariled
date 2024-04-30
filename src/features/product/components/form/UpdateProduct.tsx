@@ -11,16 +11,16 @@ import { modals } from "@mantine/modals";
 import { Link } from "react-router-dom";
 
 type props = {
-    product: Product
-}
-export const UpdateProduct:React.FC<props> = ({product}) => {
-  const {mutateAsync, isLoading } = useUpdateProduct();
-  const {data, isLoading: cLoading} = useLabelCategory()
+  product: Product;
+};
+export const UpdateProduct: React.FC<props> = ({ product }) => {
+  const { mutateAsync, isLoading } = useUpdateProduct();
+  const { data, isLoading: cLoading } = useLabelCategory();
 
-  const convertedLabel = data?.map ((item)=> ({
+  const convertedLabel = data?.map((item) => ({
     value: item.value.toString(),
-    label: item.label
-  }))
+    label: item.label,
+  }));
   const form = useForm({
     initialValues: {
       product_id: product.product_id,
@@ -29,30 +29,31 @@ export const UpdateProduct:React.FC<props> = ({product}) => {
       description: product.description,
       file: undefined,
       category_id: String(product.category_id),
+      gallery: undefined,
     },
   });
   const handleSubmit = form.onSubmit(async (values) => {
-    const category_id = Number(values.category_id)
+    const category_id = Number(values.category_id);
     await mutateAsync(
       {
         data: {
           ...values,
-          category_id
+          category_id,
         },
       },
       {
         onSuccess: () => {
           notifications.show({
-            color: 'green',
-            message: 'Produk berhasil diupdate',
+            color: "green",
+            message: "Produk berhasil diupdate",
           });
           modals.closeAll();
         },
         onError: ({ response }) => {
           form.setErrors((response?.data as any).errors);
           notifications.show({
-            color: 'red',
-            message: 'Produk gagal dibuat',
+            color: "red",
+            message: "Produk gagal dibuat",
           });
         },
       }
@@ -79,12 +80,10 @@ export const UpdateProduct:React.FC<props> = ({product}) => {
       </div>
       {product.path_file && (
         <Link to={`http://127.0.0.1:8000${product.path_file}`} target="_blank">
-            <div className="flex gap-1 mt-5">
-            <IconPhoto color="gray"/>
-            <span className="text-sm">
-            Thumbnail Sebelumnya
-            </span>
-            </div>
+          <div className="flex gap-1 mt-5">
+            <IconPhoto color="gray" />
+            <span className="text-sm">Thumbnail Sebelumnya</span>
+          </div>
         </Link>
       )}
       <FileInput
@@ -93,22 +92,27 @@ export const UpdateProduct:React.FC<props> = ({product}) => {
         my="md"
         required
         accept="image/png, image/jpeg, image/webp"
-        leftSection={<IconPhoto/>}
-        {...form.getInputProps('file')}
+        leftSection={<IconPhoto />}
+        {...form.getInputProps("file")}
       />
-       <Textarea
-          label="Deskripsi"
-          mb="md"
-          placeholder="Ex. Videotron dengan LED Kualitas Tinggi"
-          required
-          {...form.getInputProps("description")}
-        />
-      <Tiptap 
-      value={form.values['specification']}
-      onChange={(v)=> form.setFieldValue('specification', v)}
+      <Textarea
+        label="Deskripsi"
+        mb="md"
+        placeholder="Ex. Videotron dengan LED Kualitas Tinggi"
+        required
+        {...form.getInputProps("description")}
+      />
+      <Tiptap
+        value={form.values["specification"]}
+        onChange={(v) => form.setFieldValue("specification", v)}
       />
       <div className="flex justify-end gap-2">
-        <Button mt="md" type="submit" leftSection={<IconChecklist/>} loading={isLoading}>
+        <Button
+          mt="md"
+          type="submit"
+          leftSection={<IconChecklist />}
+          loading={isLoading}
+        >
           Simpan
         </Button>
       </div>

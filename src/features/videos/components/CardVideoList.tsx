@@ -1,4 +1,4 @@
-import { Card, Button, Pagination, Title } from "@mantine/core";
+import { Card, Button, Pagination, Title, Grid } from "@mantine/core";
 import { VideoQuery } from "../types/video";
 import { useState } from "react";
 import { useVideos } from "../api/getVideos";
@@ -51,7 +51,7 @@ export const CardVideoList: React.FC<props> = ({ toolbar, ...props }) => {
         {data.data?.map((list) => (
           <div
             key={list.video_id}
-            className="max-w-[560px] bg-gray-200 mx-auto"
+            className="max-w-[560px] bg-gray-200"
             dangerouslySetInnerHTML={{ __html: list?.embed }}
           />
         ))}

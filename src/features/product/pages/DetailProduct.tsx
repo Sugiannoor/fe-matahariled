@@ -42,11 +42,13 @@ const DetailProduct = () => {
               </Badge>
               <h2 className="text-2xl font-bold my-1">{data.title}</h2>
             </div>
-              <Text c="dimmed" fw={400} size="sm" mt="md">{data.description}</Text>
+            <Text c="dimmed" fw={400} size="sm" mt="md">
+              {data.description}
+            </Text>
           </div>
         </div>
       </Card>
-      <TabsProduct description={data.specification} />
+      <TabsProduct description={data.specification} ProductId={ProductId} />
     </div>
   );
 };
