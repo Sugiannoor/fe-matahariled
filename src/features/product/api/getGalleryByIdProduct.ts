@@ -8,12 +8,8 @@ type ProductRequest = {
   ProductId: number | string;
 };
 
-type GalleryPath = {
-    path: string
-}
-
 export async function getGalleryByIdProduct({ ProductId }: ProductRequest) {
-  const res = await axios.get<GeneralResponse<GalleryPath[]>>(
+  const res = await axios.get<GeneralResponse<string[]>>(
     `/gallery/${ProductId}`
   );
 
@@ -27,7 +23,10 @@ type UseProductOptions = {
   config?: QueryConfig<QueryFnType>;
 };
 
-export function useGalleryByIdProduct({ config, ProductId }: UseProductOptions) {
+export function useGalleryByIdProduct({
+  config,
+  ProductId,
+}: UseProductOptions) {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
     queryKey: ["galleries", ProductId],
