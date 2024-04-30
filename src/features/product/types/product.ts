@@ -30,6 +30,7 @@ export type ProductDTO = {
   specification: string;
   category_id: number;
   file: File | undefined;
+  gallery: File[] | []
 };
 
 export type ProductQuery = {

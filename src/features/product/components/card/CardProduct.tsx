@@ -64,7 +64,7 @@ export const CardProduct: React.FC<Props> = (props) => {
           >
             <div className="w-full aspect-video bg-gray-200 relative">
               <img
-                src={`http://127.0.0.1:8000${product.path_file}`}
+                src={import.meta.env.VITE_API_URL +`${product.path_file}`}
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover object-center"
                 onError={(e) => {

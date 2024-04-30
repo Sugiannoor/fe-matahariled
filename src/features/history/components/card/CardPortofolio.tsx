@@ -79,7 +79,7 @@ export const CardPortofolio: React.FC<Props> = (props) => {
 
             <Card.Section mt="sm">
               <Image
-                src={`http://127.0.0.1:8000${items.path_file}`}
+                src={import.meta.env.VITE_API_URL +`${items.path_file}`}
                 className="aspect-video"
               />
             </Card.Section>

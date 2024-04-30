@@ -42,3 +42,13 @@ export type HistoryDatatableType = {
 export type HistoryQuery = {
     product_id?: number
 }&Pagination
+
+type User = {
+  full_name: string;
+  photo: string
+}
+export type HistoryUser = {
+  history_id: number;
+  title: string;
+  user: User
+}

@@ -23,6 +23,7 @@ export const CreateProduct = () => {
       specification: '',
       file: undefined,
       category_id: 0,
+      gallery: [],
     },
   });
   const handleSubmit = form.onSubmit(async (values) => {
@@ -77,6 +78,16 @@ export const CreateProduct = () => {
         accept="image/png, image/jpeg, image/webp"
         leftSection={<IconPhoto/>}
         {...form.getInputProps('file')}
+      />
+      <FileInput
+        label="Gallery"
+        placeholder="Pilih Photo"
+        my="md"
+        required
+        accept="image/png, image/jpeg, image/webp"
+        multiple
+        leftSection={<IconPhoto/>}
+        {...form.getInputProps('gallery')}
       />
         <Textarea
           label="Deskripsi"

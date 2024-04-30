@@ -1,6 +1,7 @@
 import { Tabs, rem } from '@mantine/core';
 import { IconPhoto, IconPlayerPlay, IconSettings} from '@tabler/icons-react';
 import { CardGradient } from '../components/card/CardGradient';
+import { GalleryProduct } from '../components/gallery/GalleryProduct';
 
 type paramsTabs = {
     description ?: string 
@@ -23,7 +24,7 @@ export function TabsProduct({description}: paramsTabs) {
       </Tabs.List>
 
       <Tabs.Panel value="gallery">
-        Gallery tab content
+        <GalleryProduct/>
       </Tabs.Panel>
 
       <Tabs.Panel value="spesifikasi">

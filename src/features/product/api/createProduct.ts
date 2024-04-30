@@ -23,6 +23,11 @@ formData.append("specification", data.specification);
 if (data.file) {
   formData.append("file", data.file, data.file.name);
 }
+if (data.gallery && data.gallery.length > 0) {
+  data.gallery.forEach((documentation) => {
+    formData.append(`gallery`, documentation);
+  });
+}
 
 // Menambahkan field category_id
 formData.append("category_id", data.category_id.toString());
