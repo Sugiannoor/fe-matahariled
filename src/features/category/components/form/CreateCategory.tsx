@@ -29,7 +29,7 @@ export const CreateCategory = () => {
       {
         data: {
           ...values,
-          tag_ids
+          tag_ids,
         },
       },
       {
@@ -54,7 +54,7 @@ export const CreateCategory = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <TextInput
-          label="Nama Product"
+          label="Category"
           placeholder="Ex. Videotron"
           required
           {...form.getInputProps("category")}

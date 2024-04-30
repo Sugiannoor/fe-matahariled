@@ -8,22 +8,22 @@ import { useNavigate } from "react-router-dom";
 import { useLabelCategory } from "../../api/getLabelCategory";
 
 export const CreateProduct = () => {
-  const navigate = useNavigate ()
-  const {mutateAsync, isLoading } = useCreateProduct();
-  const {data, isLoading: cLoading} = useLabelCategory()
+  const navigate = useNavigate();
+  const { mutateAsync, isLoading } = useCreateProduct();
+  const { data, isLoading: cLoading } = useLabelCategory();
 
-  const convertedLabel = data?.map ((item)=> ({
+  const convertedLabel = data?.map((item) => ({
     value: item.value.toString(),
-    label: item.label
-  }))
+    label: item.label,
+  }));
   const form = useForm({
     initialValues: {
-      name: '',
-      description: '',
-      specification: '',
+      name: "",
+      description: "",
+      specification: "",
       file: undefined,
       category_id: 0,
-      gallery: [],
+      gallery: undefined,
     },
   });
   const handleSubmit = form.onSubmit(async (values) => {
@@ -36,16 +36,15 @@ export const CreateProduct = () => {
       {
         onSuccess: () => {
           notifications.show({
-            color: 'green',
-            message: 'Produk berhasil dibuat',
+            color: "green",
+            message: "Produk berhasil dibuat",
           });
-          navigate("/admin/product")
+          navigate("/admin/product");
         },
-        onError: ({ response }) => {
-          form.setErrors((response?.data as any).errors);
+        onError: () => {
           notifications.show({
-            color: 'red',
-            message: 'Produk gagal dibuat',
+            color: "red",
+            message: "Produk gagal dibuat",
           });
         },
       }
@@ -76,8 +75,8 @@ export const CreateProduct = () => {
         my="md"
         required
         accept="image/png, image/jpeg, image/webp"
-        leftSection={<IconPhoto/>}
-        {...form.getInputProps('file')}
+        leftSection={<IconPhoto />}
+        {...form.getInputProps("file")}
       />
       <FileInput
         label="Gallery"
@@ -86,22 +85,27 @@ export const CreateProduct = () => {
         required
         accept="image/png, image/jpeg, image/webp"
         multiple
-        leftSection={<IconPhoto/>}
-        {...form.getInputProps('gallery')}
+        leftSection={<IconPhoto />}
+        {...form.getInputProps("gallery")}
       />
-        <Textarea
-          label="Deskripsi"
-          mb="md"
-          placeholder="Ex. Videotron dengan LED Kualitas Tinggi"
-          required
-          {...form.getInputProps("description")}
-        />
-      <Tiptap 
-      value={form.values['specification']}
-      onChange={(v)=> form.setFieldValue('specification', v)}
+      <Textarea
+        label="Deskripsi"
+        mb="md"
+        placeholder="Ex. Videotron dengan LED Kualitas Tinggi"
+        required
+        {...form.getInputProps("description")}
+      />
+      <Tiptap
+        value={form.values["specification"]}
+        onChange={(v) => form.setFieldValue("specification", v)}
       />
       <div className="flex justify-end gap-2">
-        <Button mt="md" type="submit" leftSection={<IconChecklist/>} loading={isLoading}>
+        <Button
+          mt="md"
+          type="submit"
+          leftSection={<IconChecklist />}
+          loading={isLoading}
+        >
           Simpan
         </Button>
       </div>

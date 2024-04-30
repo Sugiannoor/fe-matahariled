@@ -10,6 +10,7 @@ export type Product = {
   file_id: number;
   description: string;
   path_file: string;
+  gallery: File[] | undefined;
 } & GeneralEntity;
 
 export type ProducById = {
@@ -30,7 +31,7 @@ export type ProductDTO = {
   specification: string;
   category_id: number;
   file: File | undefined;
-  gallery: File[] | []
+  gallery: File[] | undefined;
 };
 
 export type ProductQuery = {
