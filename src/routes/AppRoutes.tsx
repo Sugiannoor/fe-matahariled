@@ -5,6 +5,7 @@ import { DataContract } from "@/features/contract/pages/Contract";
 import { Dashboard } from "@/features/dashboard/pages/Dashboard";
 import { DataHistory } from "@/features/history/pages/DataHistory";
 import { CreateProduct } from "@/features/product/components/form/CreateProduct";
+import { DataCardProductByCategory } from "@/features/product/pages/DataCardProductByCategory";
 import { DataProduct } from "@/features/product/pages/DataProduct";
 import DetailProduct from "@/features/product/pages/DetailProduct";
 import { Profile } from "@/features/profile/pages/Profile";
@@ -16,6 +17,7 @@ import { ProfileLayout } from "@/layout/ProfileLayout";
 import { Home } from "@/pages/Home";
 import { Portofolio } from "@/pages/Portofolio";
 import { Product } from "@/pages/Product";
+import { ProductByCategory } from "@/pages/ProductByCategory";
 import { Video } from "@/pages/Video";
 import { Route, Routes } from "react-router-dom";
 
@@ -26,6 +28,7 @@ export const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Product />} />
         <Route path="/product/detail/:id" element={<DetailProduct />} />
+        <Route path="/product/category/:id" element={<ProductByCategory />} />
         <Route path="/portofolio" element={<Portofolio />} />
         <Route path="/videolist" element={<Video />} />
       </Route>
