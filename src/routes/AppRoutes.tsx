@@ -4,8 +4,8 @@ import { RegisterPage } from "@/features/auth/pages/RegisterPage";
 import { DataContract } from "@/features/contract/pages/Contract";
 import { Dashboard } from "@/features/dashboard/pages/Dashboard";
 import { DataHistory } from "@/features/history/pages/DataHistory";
+import DetailHistory from "@/features/history/pages/DetailHistory";
 import { CreateProduct } from "@/features/product/components/form/CreateProduct";
-import { DataCardProductByCategory } from "@/features/product/pages/DataCardProductByCategory";
 import { DataProduct } from "@/features/product/pages/DataProduct";
 import DetailProduct from "@/features/product/pages/DetailProduct";
 import { Profile } from "@/features/profile/pages/Profile";
@@ -30,6 +30,7 @@ export const AppRoutes = () => {
         <Route path="/product/detail/:id" element={<DetailProduct />} />
         <Route path="/product/category/:id" element={<ProductByCategory />} />
         <Route path="/portofolio" element={<Portofolio />} />
+        <Route path="/portofolio/detail/:id" element={<DetailHistory />} />
         <Route path="/videolist" element={<Video />} />
       </Route>
       <Route element={<ProfileLayout />}>

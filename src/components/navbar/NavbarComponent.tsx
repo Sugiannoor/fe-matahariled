@@ -245,7 +245,7 @@ export function NavbarComponent() {
           <a href="/portofolio" className={classes.link}>
             Portofolio
           </a>
-          <a href="/video" className={classes.link}>
+          <a href="/videolist" className={classes.link}>
             Video
           </a>
 
