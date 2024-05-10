@@ -6,6 +6,7 @@ import {
   IconCheck,
   IconEdit,
   IconInfoCircle,
+  IconPhoto,
   IconTrash,
   IconX,
 } from "@tabler/icons-react";
@@ -15,6 +16,7 @@ import { Product, ProductQuery } from "../../types/product";
 import { useProducts } from "../../api/getProducts";
 import { useDeleteProduct } from "../../api/deleteProduct";
 import { UpdateProduct } from "../form/UpdateProduct";
+import { CreateHero } from "../form/CreateHeroProduct";
 
 type props = {
   toolbar?: React.ReactNode;
@@ -36,6 +38,14 @@ export const TableProduct: React.FC<props> = ({ toolbar, ...props }) => {
       children: <UpdateProduct product={product} />,
     });
   }
+  function handleHero(productId:number) {
+    modals.open({
+      title: "Tautkan Hero Image",
+      size: "lg",
+      children: <CreateHero productId={productId} />,
+    });
+  }
+
   const handleDelete = (id: number) => {
     modals.openConfirmModal({
       title: "Hapus Product",
@@ -116,7 +126,16 @@ export const TableProduct: React.FC<props> = ({ toolbar, ...props }) => {
                 >
                   <IconTrash size={18} />
                 </ActionIcon>
-                <ActionIcon variant="subtle" title="Detail Promo" radius="lg">
+                <ActionIcon
+                  variant="subtle"
+                  title="Tautkan Hero Image"
+                  color="grey"
+                  radius="lg"
+                  onClick={() => handleHero(items.product_id)}
+                >
+                  <IconPhoto size={18} />
+                </ActionIcon>
+                <ActionIcon variant="subtle" title="Detail Product" radius="lg">
                   <IconInfoCircle size={18} />
                 </ActionIcon>
               </div>
