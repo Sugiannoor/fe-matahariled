@@ -2,7 +2,7 @@ import { Title, Text, Button, Center, Loader, Container } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 import { useHeroProducts } from "@/features/contract/api/getProductsHero";
 import classes from "./hero.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 export function HeroImageRight() {
