@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useProduct } from "../api/getProductById";
-import { Badge, Card, Image, Loader, Text } from "@mantine/core";
-import { TabsProduct } from "../Tabs/TabsProduct";
+import { Badge, Card, Center, Image, Loader, Text } from "@mantine/core";
+import { useHistory } from "../api/getHistoryById";
+import { TabsHistory } from "../components/TabsHistory";
 
-const DetailProduct = () => {
+const DetailHistory = () => {
   const { id } = useParams();
   const ProductId = Number(id);
-  const { data, isLoading, isError } = useProduct({ ProductId });
+  const { data, isLoading, isError } = useHistory({ ProductId });
   if (isLoading || isError)
     return (
       <div className="flex justify-center mt-72">
@@ -24,7 +24,7 @@ const DetailProduct = () => {
           <div className="p-10">
             <div>
               <Badge tt="uppercase" fw={700} bg="orange" size="md">
-                {data.category}
+                {data.category_name}
               </Badge>
               <h2 className="text-2xl font-bold my-1">{data.title}</h2>
             </div>
@@ -34,9 +34,9 @@ const DetailProduct = () => {
           </div>
         </div>
       </Card>
-      <TabsProduct description={data.specification} ProductId={ProductId} />
+      <TabsHistory embed={data.embed} />
     </div>
   );
 };
 
-export default DetailProduct;
+export default DetailHistory;

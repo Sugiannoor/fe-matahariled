@@ -1,12 +1,12 @@
 import { Badge, Button, Card, Image, Pagination, Text } from "@mantine/core";
 import React, { useState } from "react";
-import { HistoryDatatableType, HistoryQuery } from "../../types/history";
+import { HistoryQuery } from "../../types/history";
 import { useHistories } from "../../api/getHistories";
-import { PortofolioDetail } from "../../pages/PortofolioDetail";
-import { modals } from "@mantine/modals";
+import { useNavigate } from "react-router-dom";
 
 type Props = HistoryQuery;
 export const CardPortofolio: React.FC<Props> = (props) => {
+  const navigate = useNavigate();
   const [params, setParams] = useState<HistoryQuery>({
     page: 1,
     limit: 8,
@@ -43,13 +43,6 @@ export const CardPortofolio: React.FC<Props> = (props) => {
           ))}
       </div>
     );
-  function handleDetail(history: HistoryDatatableType) {
-    modals.open({
-      title: "Detail Portofolio",
-      size: "xl",
-      children: <PortofolioDetail history={history} />,
-    });
-  }
 
   return (
     <>
@@ -79,7 +72,7 @@ export const CardPortofolio: React.FC<Props> = (props) => {
 
             <Card.Section mt="sm">
               <Image
-                src={import.meta.env.VITE_API_URL +`${items.path_file}`}
+                src={import.meta.env.VITE_API_URL + `${items.path_file}`}
                 className="aspect-video"
               />
             </Card.Section>
@@ -87,7 +80,7 @@ export const CardPortofolio: React.FC<Props> = (props) => {
             <Card.Section mt="sm" p="sm">
               <Button
                 variant="outline"
-                onClick={() => handleDetail(items)}
+                onClick={() => navigate(`/history/detail/${items.history_id}`)}
                 fullWidth
               >
                 Detail

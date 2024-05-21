@@ -5,12 +5,12 @@ import { GeneralResponse } from "@/types/api";
 import { HistoryDatatableType } from "../types/history";
 
 type HistoryRequest = {
-  id: number | string;
+  ProductId: number | string;
 };
 
-export async function getHistory({ id }: HistoryRequest) {
+export async function getHistory({ ProductId }: HistoryRequest) {
   const res = await axios.get<GeneralResponse<HistoryDatatableType>>(
-    `/history/${id}`
+    `/history/${ProductId}`
   );
 
   return res.data.data;
@@ -19,14 +19,14 @@ export async function getHistory({ id }: HistoryRequest) {
 type QueryFnType = typeof getHistory;
 
 type UseHistory = {
-  id: number | string;
+  ProductId: number | string;
   config?: QueryConfig<QueryFnType>;
 };
 
-export function useHistory({ config, id }: UseHistory) {
+export function useHistory({ config, ProductId }: UseHistory) {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
-    queryKey: ["history", id],
-    queryFn: () => getHistory({ id }),
+    queryKey: ["history", ProductId],
+    queryFn: () => getHistory({ ProductId }),
   });
 }
