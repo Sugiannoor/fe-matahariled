@@ -44,9 +44,9 @@ export const CreateHero: React.FC<props> = ({ productId }) => {
   });
   return (
     <form onSubmit={handleSubmit}>
-      <div className="grid grid-cols-2 gap-5">
       <FileInput
-        label="Thumbnail"
+        label="Hero"
+        description=" Landscape (16:9)"
         placeholder="Pilih Hero Image"
         my="md"
         required
@@ -54,7 +54,6 @@ export const CreateHero: React.FC<props> = ({ productId }) => {
         leftSection={<IconPhoto />}
         {...form.getInputProps("file")}
       />
-      </div>
       <div className="flex justify-end gap-2">
         <Button
           mt="md"
