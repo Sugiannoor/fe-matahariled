@@ -9,7 +9,7 @@ import { CREDS_KEY } from "./creds";
 import { User } from "../types/user";
 
 type LoginDTO = {
-  username: string;
+  email: string;
   password: string;
 };
 

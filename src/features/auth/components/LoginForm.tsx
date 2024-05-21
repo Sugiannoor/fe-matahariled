@@ -14,7 +14,7 @@ import { notifications } from "@mantine/notifications";
 export function LoginForm() {
   const form = useForm({
     initialValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
@@ -33,6 +33,9 @@ export function LoginForm() {
           });
         }
       },
+      onSuccess: () => {
+        window.location.reload();
+      },
     });
   }
   return (
@@ -45,11 +48,11 @@ export function LoginForm() {
       </Text>
       <form onSubmit={handleSubmit}>
         <TextInput
-          label="Username"
-          placeholder="hello123"
+          label="Email"
+          placeholder="hello123@gmail.com"
           size="md"
           required
-          {...form.getInputProps("username")}
+          {...form.getInputProps("email")}
         />
         <PasswordInput
           label="Password"
