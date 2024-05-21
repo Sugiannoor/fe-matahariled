@@ -8,7 +8,7 @@ import {  useNavigate } from "react-router-dom";
 export function HeroImageRight() {
   const navigate = useNavigate ();
   const { data, isLoading, isError } = useHeroProducts();
-  if (isLoading || isError) {
+  if (isLoading || isError || data === null) {
     return (
           <div className={classes.root}>
             <Carousel withIndicators height={500}>
@@ -29,7 +29,7 @@ export function HeroImageRight() {
                         </Text>{" "}
                         Indoor dan Outdoor
                       </Title>
-      
+  
                       <Text className={classes.description} mt={30}>
                         PT. Matahari Teknologi Jaya Merupakan Perusahaan Perdagangan
                         besar elektronik serta importir berbagai Produk Display & IT
