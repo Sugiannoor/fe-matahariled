@@ -10,6 +10,7 @@ import { notifications } from "@mantine/notifications";
 import { IconChecklist, IconPhoto } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
 import { useCreateUserForm } from "../../api/createUserForm";
+import { Authorization } from "@/features/auth/components/Authorization";
 
 export const CreateUser = () => {
   const { mutateAsync, isLoading } = useCreateUserForm();
@@ -90,14 +91,16 @@ export const CreateUser = () => {
         required
         {...form.getInputProps("phone_number")}
       />
-      <Select
-        searchable
-        label="Role"
-        mt="md"
-        placeholder="Pilih Role"
-        data={["Customer", "Admin", "Superadmin"]}
-        {...form.getInputProps("role")}
-      />
+      <Authorization role={["SuperAdmin"]}>
+        <Select
+          searchable
+          label="Role"
+          mt="md"
+          placeholder="Pilih Role"
+          data={["Customer", "Admin", "Superadmin"]}
+          {...form.getInputProps("role")}
+        />
+      </Authorization>
       <FileInput
         label="Foto Pengguna / Instansi terkait"
         placeholder="Pilih Thumbnail"

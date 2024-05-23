@@ -1,4 +1,4 @@
-import { useAuth } from "@/hooks/authHook";
+import { useCreds } from "@/features/auth/api/creds";
 import { Center, Loader } from "@mantine/core";
 import { Suspense } from "react";
 import { Navigate, Outlet } from "react-router-dom";
@@ -10,11 +10,11 @@ const LoadingScreen = () => (
 );
 
 export const AuthLayout: React.FC = () => {
-  const { creds } = useAuth();
+  const { data } = useCreds();
 
-  if (creds?.role === "Admin" || creds?.role === "Superadmin")
-    return <Navigate to="/dashboard" replace />;
-  if (creds && creds?.role === "Customer") return <Navigate to="/" replace />;
+  if (data?.role === "Admin" || data?.role === "Superadmin")
+    return <Navigate to="/admin/dashboard" replace />;
+  if (data && data?.role === "Customer") return <Navigate to="/" replace />;
 
   return (
     <Suspense fallback={<LoadingScreen />}>

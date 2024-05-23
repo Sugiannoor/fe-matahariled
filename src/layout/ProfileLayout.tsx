@@ -1,11 +1,8 @@
 import { NavbarComponent } from "@/components/navbar/NavbarComponent";
-import { useAuth } from "@/hooks/authHook";
 import { Tabs } from "@mantine/core";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export const ProfileLayout = () => {
-  const { creds } = useAuth();
-  if (!creds) return <Navigate to="/login" replace />;
   return (
     <div>
       <NavbarComponent />
