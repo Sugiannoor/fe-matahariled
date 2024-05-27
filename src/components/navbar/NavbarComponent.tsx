@@ -101,7 +101,7 @@ export function NavbarComponent() {
     <Box className="shadow-sm m-4 rounded-3xl fixed top-0 left-0 right-0 bg-white z-50">
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <img className="h-10 w-30" src="/matahariled.png" alt="" />
+          <img className="h-10 w-30" src="/logo.png" alt="Logo Chand Banua" />
 
           <Group h="100%" gap={0} visibleFrom="sm">
             <a href="/" className={classes.link}>

@@ -80,7 +80,9 @@ export const CardPortofolio: React.FC<Props> = (props) => {
             <Card.Section mt="sm" p="sm">
               <Button
                 variant="outline"
-                onClick={() => navigate(`/history/detail/${items.history_id}`)}
+                onClick={() =>
+                  navigate(`/portofolio/detail/${items.history_id}`)
+                }
                 fullWidth
               >
                 Detail
