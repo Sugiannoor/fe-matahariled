@@ -1,4 +1,4 @@
-import { Card, Button, Pagination, Title, Grid } from "@mantine/core";
+import { Pagination } from "@mantine/core";
 import { VideoQuery } from "../types/video";
 import { useState } from "react";
 import { useVideos } from "../api/getVideos";

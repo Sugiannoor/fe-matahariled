@@ -1,6 +1,6 @@
 import { Carousel } from "@mantine/carousel";
 import classes from "./Carausel.module.css";
-import { Button, Center, Loader } from "@mantine/core";
+import { Center, Loader } from "@mantine/core";
 import { useHistoryUser } from "@/features/history/api/getHistoryUser";
 import { HistoryUser } from "@/features/history/types/history";
 import { useNavigate } from "react-router-dom";
@@ -66,8 +66,9 @@ export function CarauselProduct() {
             >
               <img
                 src={
-                  import.meta.env.VITE_API_URL + `${history.user.photo}` ??
-                  "/user_default.png"
+                  history.user.photo
+                    ? import.meta.env.VITE_API_URL + `${history.user.photo}`
+                    : "/user_default.png"
                 }
                 alt="User logo"
                 className="mb-4 h-36 object-cover rounded-lg"

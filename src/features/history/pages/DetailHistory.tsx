@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Badge, Card, Center, Image, Loader, Text } from "@mantine/core";
+import { Badge, Card, Image, Loader, Text } from "@mantine/core";
 import { useHistory } from "../api/getHistoryById";
 import { TabsHistory } from "../components/TabsHistory";
 

@@ -8,13 +8,12 @@ import { useDebouncedValue } from "@mantine/hooks";
 import { ContractQuery } from "../types/contract";
 import { useLabelUser } from "../api/getUsersLabel";
 
-
 export const DataContract = () => {
   const [query, setQuery] = useState<ContractQuery>({
     search: "",
     limit: undefined,
     user_id: undefined,
-    product_id: undefined
+    product_id: undefined,
   });
 
   const [params] = useDebouncedValue(query, 200);
@@ -26,29 +25,27 @@ export const DataContract = () => {
   }));
 
   const handleCreate = () => {
-    modals.open ({
+    modals.open({
       title: "Tambah Kontrak",
-      size: 'lg',
-      children: (
-        <CreateContract/>
-      )
-    })
-  }
+      size: "lg",
+      children: <CreateContract />,
+    });
+  };
   return (
     <main>
-      <h1 className="text-2xl lg:text-3xl text-gray-700 font-semibold">Data Kontrak</h1>
+      <h1 className="text-2xl lg:text-3xl text-gray-700 font-semibold">
+        Data Kontrak
+      </h1>
       <div className="mt-3 w-16 h-[0.15rem] bg-primary-800 rounded-lg"></div>
       <section className="my-4 flex justify-between">
-        <Button onClick={()=> handleCreate()}>
-          Tambah Data
-        </Button>
+        <Button onClick={() => handleCreate()}>Tambah Data</Button>
         <div className="space-x-4 flex items-center">
           <div className="max-w-xs w-full">
             <TextInput
               leftSection={<IconSearch size={16} />}
               placeholder="Cari "
               value={query.search}
-              onChange={(v)=> setQuery({...query, search: v.target.value})}
+              onChange={(v) => setQuery({ ...query, search: v.target.value })}
             />
           </div>
           <div className="max-w-xs w-full">
@@ -68,7 +65,7 @@ export const DataContract = () => {
       </section>
 
       <section className="mb-8 w-full">
-        <TableContract {...params}/>
+        <TableContract {...params} />
       </section>
     </main>
   );

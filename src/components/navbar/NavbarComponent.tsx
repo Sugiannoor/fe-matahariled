@@ -1,13 +1,10 @@
 import {
-  HoverCard,
   Group,
   Button,
   UnstyledButton,
   Text,
-  SimpleGrid,
   ThemeIcon,
   Divider,
-  Center,
   Box,
   Burger,
   Drawer,
@@ -26,14 +23,12 @@ import {
   IconChartPie3,
   IconFingerprint,
   IconCoin,
-  IconChevronDown,
   IconLogout,
   IconUser,
 } from "@tabler/icons-react";
 import classes from "./navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Authorization } from "@/features/auth/components/Authorization";
-import { useAuth } from "@/hooks/authHook";
 
 const mockdata = [
   {
@@ -69,10 +64,9 @@ const mockdata = [
 ];
 
 export function NavbarComponent() {
-  const { creds } = useAuth();
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+  const [linksOpened] = useDisclosure(false);
   const theme = useMantineTheme();
   const navigate = useNavigate();
 

@@ -1,5 +1,5 @@
-import { Button, Select, TextInput } from "@mantine/core";
-import { IconCategory, IconSearch } from "@tabler/icons-react";
+import { Button, TextInput } from "@mantine/core";
+import { IconSearch } from "@tabler/icons-react";
 import { TableUser } from "../components/table/TableUser";
 import { modals } from "@mantine/modals";
 import { CreateUser } from "../components/form/CreateUser";
@@ -9,25 +9,25 @@ import { useDebouncedValue } from "@mantine/hooks";
 
 export const DataUser = () => {
   const [query, setQuery] = useState<UserQuery>({
-    search: '',
+    search: "",
     full_name: undefined,
     username: undefined,
   });
   const [params] = useDebouncedValue(query, 500);
   const handleCreate = () => {
-    modals.open ({
+    modals.open({
       title: "Tambah User",
-      size: 'lg',
-      children: (
-        <CreateUser/>
-      )
-    })
-  }
+      size: "lg",
+      children: <CreateUser />,
+    });
+  };
   return (
     <main>
-      <h1 className="text-2xl lg:text-3xl text-gray-700 font-semibold">Data User</h1>
+      <h1 className="text-2xl lg:text-3xl text-gray-700 font-semibold">
+        Data User
+      </h1>
       <div className="mt-3 w-16 h-[0.15rem] bg-primary-800 rounded-lg"></div>
-      <Button onClick={()=> handleCreate()} className="mb-5">
+      <Button onClick={() => handleCreate()} className="mb-5">
         Tambah
       </Button>
       <section className="space-y-4 mb-4">
@@ -44,7 +44,7 @@ export const DataUser = () => {
       </section>
 
       <section className="mb-8 w-full">
-        <TableUser {...params}/>
+        <TableUser {...params} />
       </section>
     </main>
   );

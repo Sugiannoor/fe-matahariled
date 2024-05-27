@@ -1,4 +1,4 @@
-import { Button, MultiSelect, Select, TextInput } from "@mantine/core";
+import { Button, MultiSelect, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useLabelTag } from "../../api/getLabelTags";
 import { notifications } from "@mantine/notifications";

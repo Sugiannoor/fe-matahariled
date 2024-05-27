@@ -1,4 +1,3 @@
-import { GeneralResponse } from "@/types/api";
 import { MutationConfig } from "@/lib/react-query";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axios } from "@/lib/axios";
@@ -6,13 +5,12 @@ import { axios } from "@/lib/axios";
 type ProductReuest = {
   data: {
     product_id: number;
-    file: File | undefined
+    file: File | undefined;
   };
 };
 
 export async function createHeroProduct({ data }: ProductReuest) {
   const formData = new FormData();
-
 
   formData.append("product_id", data.product_id.toString());
   // Menambahkan field file (jika ada)
