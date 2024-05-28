@@ -7,8 +7,8 @@ import { Navigate, Outlet, useNavigate } from "react-router-dom";
 export const AdminLayout = () => {
   const navigate = useNavigate();
   const { data } = useCreds();
-  if (data?.role === "Customer") return <Navigate to="/" replace />;
   if (!data) return <Navigate to="/" replace />;
+  if (data?.role === "Customer") return <Navigate to="/" replace />;
   return (
     <div className="mx-auto max-w-[90%]">
       <div className="mb-8">

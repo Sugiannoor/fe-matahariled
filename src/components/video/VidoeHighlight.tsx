@@ -8,7 +8,7 @@ export const VidoeHighlight = () => {
       <iframe
         className="mx-auto w-[75%]"
         height={513}
-        src="https://youtu.be/RxDxi-9MuWc?si=fH4wSf0q4jKEasp5"
+        src="https://www.youtube.com/embed/RxDxi-9MuWc?si=853hJu9Ts_L9QpJN"
         title="YouTube video player"
         frameBorder={0}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

@@ -1,11 +1,11 @@
 import { NavbarComponent } from "@/components/navbar/NavbarComponent";
-import { useAuth } from "@/hooks/authHook";
+import { useCreds } from "@/features/auth/api/creds";
 import { Navigate, Outlet } from "react-router-dom";
 
 export const LandingLayout = () => {
-  const { creds } = useAuth();
-  if (creds?.role === "Admin" || creds?.role === "Superadmin")
-    return <Navigate to="/dashboard" replace />;
+  const {data} = useCreds ()
+  if (data?.role === "Admin" || data?.role === "Superadmin")
+    return <Navigate to="/admin/dashboard" replace />;
 
   return (
     <div>

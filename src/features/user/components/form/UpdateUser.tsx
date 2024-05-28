@@ -6,6 +6,7 @@ import { modals } from "@mantine/modals";
 import { UserTableType } from "../../types/user";
 import React from "react";
 import { useUpdateUser } from "../../api/updateUser";
+import { Authorization } from "@/features/auth/components/Authorization";
 
 type props = {
     user: UserTableType
@@ -80,6 +81,7 @@ export const UpdateUser:React.FC<props> = ({user}) => {
         required
         {...form.getInputProps("phone_number")}
       />
+      <Authorization role={["SuperAdmin"]}>
       <Select
         searchable
         label="Role"
@@ -88,7 +90,8 @@ export const UpdateUser:React.FC<props> = ({user}) => {
         required
         data={["Customer", "Admin", "Superadmin"]}
         {...form.getInputProps("role")}
-      />
+        />
+        </Authorization>
 
       <div className="flex justify-end gap-2">
         <Button mt="md" type="submit" loading={isLoading} leftSection={<IconChecklist />}>
