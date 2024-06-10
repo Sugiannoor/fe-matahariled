@@ -3,7 +3,7 @@ import { useProduct } from "../api/getProductById";
 import { Badge, Card, Image, Loader, Text } from "@mantine/core";
 import { TabsProduct } from "../Tabs/TabsProduct";
 
-const DetailProduct = () => {
+export const DetailProduct = () => {
   const { id } = useParams();
   const ProductId = Number(id);
   const { data, isLoading, isError } = useProduct({ ProductId });
@@ -38,5 +38,3 @@ const DetailProduct = () => {
     </div>
   );
 };
-
-export default DetailProduct;

@@ -104,54 +104,6 @@ export function NavbarComponent() {
             <a href="/Product" className={classes.link}>
               Product
             </a>
-            {/* <HoverCard
-              width={600}
-              position="bottom"
-              radius="md"
-              shadow="md"
-              withinPortal
-            >
-              <HoverCard.Target>
-                <a href="#" className={classes.link}>
-                  <Center inline>
-                    <Box component="span" mr={5}>
-                      All Product
-                    </Box>
-                    <IconChevronDown
-                      style={{ width: rem(16), height: rem(16) }}
-                      color={theme.colors.blue[6]}
-                    />
-                  </Center>
-                </a>
-              </HoverCard.Target>
-
-              <HoverCard.Dropdown style={{ overflow: "hidden" }}>
-                <Group justify="space-between" px="md">
-                  <Text fw={500}>All Product</Text>
-                </Group>
-
-                <Divider my="sm" />
-
-                <SimpleGrid cols={2} spacing={0}>
-                  {links}
-                </SimpleGrid>
-
-                <div className={classes.dropdownFooter}>
-                  <Group justify="space-between">
-                    <div>
-                      <Text fw={500} fz="sm">
-                        Get started
-                      </Text>
-                      <Text size="xs" c="dimmed">
-                        Their food sources have decreased, and their numbers
-                      </Text>
-                    </div>
-                    <Button variant="default">Get started</Button>
-                  </Group>
-                </div>
-              </HoverCard.Dropdown>
-            </HoverCard> */}
-
             <a href="/portofolio" className={classes.link}>
               Portofolio
             </a>
@@ -161,7 +113,7 @@ export function NavbarComponent() {
           </Group>
           <Authorization role={["-Admin", "-Customer", "-Customer"]}>
             <Group visibleFrom="sm">
-              <Link to={"login"}>
+              <Link to={"/login"}>
                 <Button>Log in</Button>
               </Link>
               <Link to={"/register"}>

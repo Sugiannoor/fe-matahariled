@@ -3,7 +3,7 @@ import { Badge, Card, Image, Loader, Text } from "@mantine/core";
 import { useHistory } from "../api/getHistoryById";
 import { TabsHistory } from "../components/TabsHistory";
 
-const DetailHistory = () => {
+export const DetailHistory = () => {
   const { id } = useParams();
   const ProductId = Number(id);
   const { data, isLoading, isError } = useHistory({ ProductId });
@@ -38,5 +38,3 @@ const DetailHistory = () => {
     </div>
   );
 };
-
-export default DetailHistory;

@@ -15,9 +15,7 @@ export const AppProvider: React.FC<props> = ({ children }) => {
     <ErrorProvider>
       <QueryClientProvider client={queryClient}>
         <Router>
-          <StyleProvider>
-            {children}
-          </StyleProvider>
+          <StyleProvider>{children}</StyleProvider>
         </Router>
       </QueryClientProvider>
     </ErrorProvider>

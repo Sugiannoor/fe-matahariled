@@ -89,14 +89,14 @@ export const OurProduct = () => {
           </Link>
         </div>
       </div>
-      <Link to={"product"}>
-      <Button
-        size="lg"
-        className="bg-p transition-all duration-300 mt-10 mx-auto block"
+      <Link to={"/product"}>
+        <Button
+          size="lg"
+          className="bg-p transition-all duration-300 mt-10 mx-auto block"
         >
-        Selengkapnya
-      </Button>
-        </Link>
+          Selengkapnya
+        </Button>
+      </Link>
     </div>
   );
 };
