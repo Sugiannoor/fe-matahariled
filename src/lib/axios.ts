@@ -4,7 +4,7 @@ import storage from "@/utils/storage";
 
 const baseURL = import.meta.env.VITE_API_URL
   ? import.meta.env.VITE_API_URL + "/api"
-  : "http://127.0.0.1:8000/api";
+  : "https://backend.chandled.com/api";
 
 export const axios = Axios.create({
   baseURL,
