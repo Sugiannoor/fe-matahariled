@@ -10,11 +10,12 @@ import {
 import { useForm } from "@mantine/form";
 import { useLogin } from "../api/login";
 import { notifications } from "@mantine/notifications";
+import { IconX } from "@tabler/icons-react";
 
 export function LoginForm() {
   const form = useForm({
     initialValues: {
-      email: "",
+      username: "",
       password: "",
     },
   });
@@ -30,6 +31,7 @@ export function LoginForm() {
           notifications.show({
             message: "Periksa Kembali Email dan Password Anda",
             color: "red",
+            icon: <IconX />,
           });
         }
       },
@@ -48,11 +50,11 @@ export function LoginForm() {
       </Text>
       <form onSubmit={handleSubmit}>
         <TextInput
-          label="Email"
-          placeholder="hello123@gmail.com"
+          label="username"
+          placeholder="Masukan Username"
           size="md"
           required
-          {...form.getInputProps("email")}
+          {...form.getInputProps("username")}
         />
         <PasswordInput
           label="Password"

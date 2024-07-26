@@ -9,7 +9,7 @@ import { CREDS_KEY } from "./creds";
 import { User } from "../types/user";
 
 type LoginDTO = {
-  email: string;
+  username: string;
   password: string;
 };
 
@@ -20,11 +20,6 @@ type LoginResponse = GeneralResponse<{
 
 export async function login(data: LoginDTO): Promise<LoginResponse> {
   const res = await axios.post<LoginResponse>("/auth/login", data);
-
-  const { role } = res.data.data.user;
-
-  if (role != "Superadmin" && role != "Customer" && role != "Admin")
-    throw { message: "Anda tidak memiliki akses kedalam aplikasi ini" };
 
   return res.data;
 }

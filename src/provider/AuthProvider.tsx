@@ -1,10 +1,10 @@
-import { Center, Loader } from '@mantine/core';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useMemo } from 'react';
+import { Center, Loader } from "@mantine/core";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMemo } from "react";
 
-import { AuthContext } from '@/contexts/AuthContext';
-import { useCreds } from '@/features/auth/api/creds';
-import { logout } from '@/features/auth/api/logout';
+import { AuthContext } from "@/contexts/AuthContext";
+import { useCreds } from "@/features/auth/api/creds";
+import { logout } from "@/features/auth/api/logout";
 
 type Props = {
   children: React.ReactNode;
