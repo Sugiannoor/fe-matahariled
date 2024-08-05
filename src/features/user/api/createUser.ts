@@ -1,15 +1,15 @@
-import { UserDTO, UserTableType } from "../types/user";
+import { UserForm } from "../types/user";
 import { GeneralResponse } from "@/types/api";
 import { MutationConfig } from "@/lib/react-query";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axios } from "@/lib/axios";
 
 type UserReuest = {
-  data: UserDTO;
+  data: UserForm;
 };
 
 export async function createUser({ data }: UserReuest) {
-  const res = await axios.post<GeneralResponse<UserTableType>>(
+  const res = await axios.post<GeneralResponse<UserForm>>(
     "/auth/register",
     data
   );

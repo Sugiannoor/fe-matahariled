@@ -10,6 +10,7 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
+import { IconX } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 
 export function RegisterForm() {
@@ -42,18 +43,25 @@ export function RegisterForm() {
           navigate("/login");
         },
         onError: ({ response }) => {
-          form.setErrors((response?.data as any).errors);
-          notifications.show({
-            color: "red",
-            message: "Register Gagal",
-          });
+          if (response?.data.errors) {
+            form.setErrors(response.data.errors);
+          } else {
+            notifications.show({
+              message: response?.data.message || "Gagal Membuat Akun",
+              color: "red",
+              icon: <IconX />,
+            });
+          }
         },
       }
     );
   });
 
   return (
-    <Paper radius={0} className="flex flex-col justify-center p-5 lg:p-16 max-h-[100vh] xl:p-36">
+    <Paper
+      radius={0}
+      className="flex flex-col justify-center p-5 lg:p-16 max-h-[100vh] xl:p-36"
+    >
       <Title order={1} ta="center" mt="md">
         Selamat Datang Customer
       </Title>
@@ -66,7 +74,6 @@ export function RegisterForm() {
           placeholder="Ex. Budi Goals"
           size="md"
           mt="md"
-          required
           {...form.getInputProps("full_name")}
         />
         <TextInput
@@ -74,7 +81,6 @@ export function RegisterForm() {
           placeholder="Ex. Budi12"
           size="md"
           mt="md"
-          required
           {...form.getInputProps("username")}
         />
         <TextInput
@@ -82,7 +88,6 @@ export function RegisterForm() {
           placeholder="Ex. hello@gmail.com"
           size="md"
           mt="md"
-          required
           {...form.getInputProps("email")}
         />
         <TextInput
@@ -90,7 +95,6 @@ export function RegisterForm() {
           placeholder="Ex. +62813 / 0813"
           size="md"
           mt="md"
-          required
           {...form.getInputProps("phone_number")}
         />
         <PasswordInput
@@ -98,14 +102,19 @@ export function RegisterForm() {
           placeholder="Password Anda"
           mt="md"
           size="md"
-          required
           {...form.getInputProps("password")}
         />
         <div className="flex gap-2 mt-10">
           <Button fullWidth size="md" type="submit" disabled={isLoading}>
             Register
           </Button>
-          <Button fullWidth size="md" color="red" type="button" onClick={()=> navigate("/login")}>
+          <Button
+            fullWidth
+            size="md"
+            color="red"
+            type="button"
+            onClick={() => navigate("/login")}
+          >
             Batal
           </Button>
         </div>

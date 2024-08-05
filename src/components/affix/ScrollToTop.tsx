@@ -1,6 +1,6 @@
 import { IconArrowUp } from "@tabler/icons-react";
 import { useWindowScroll } from "@mantine/hooks";
-import { Affix,  Transition, } from "@mantine/core";
+import { Affix, Transition } from "@mantine/core";
 
 export function ScrollToTop() {
   const [scroll, scrollTo] = useWindowScroll();
@@ -15,7 +15,7 @@ export function ScrollToTop() {
               onClick={() => scrollTo({ y: 0 })}
               size={35}
               color="white"
-              className="bg-[#238BE6] rounded-full cursor-pointer p-1"
+              className="bg-[#FC8C0C] rounded-full cursor-pointer p-1"
             />
           )}
         </Transition>

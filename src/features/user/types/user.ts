@@ -22,6 +22,14 @@ export type UserDTO = {
   phone_number: string;
   file?: File;
 };
+export type UserForm = {
+  full_name: string;
+  role: string;
+  email: string;
+  password: string;
+  username: string;
+  phone_number: string;
+};
 
 export type UserQuery = {
   full_name?: string;

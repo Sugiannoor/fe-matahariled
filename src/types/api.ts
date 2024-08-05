@@ -12,6 +12,7 @@ export type ErrorResponse = {
   code: number;
   status: string;
   errors?: { [key: string]: string[] };
+  message: string;
 };
 
 export type Metadata = {
@@ -27,7 +28,7 @@ export type Pagination = {
   search?: string;
   page?: number;
   limit?: number;
-  sort?: 'asc' | 'desc';
+  sort?: "asc" | "desc";
   sort_by?: string;
 };
 

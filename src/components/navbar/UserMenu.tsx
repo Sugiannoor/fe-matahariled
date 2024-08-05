@@ -1,8 +1,11 @@
-import { Menu, UnstyledButton } from '@mantine/core';
-import { IconLogout } from '@tabler/icons-react';
-
+import { logout } from "@/features/auth/api/logout";
+import { Menu, UnstyledButton } from "@mantine/core";
+import { IconLogout } from "@tabler/icons-react";
 
 export const UserMenu: React.FC = () => {
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <div>
       <Menu withArrow position="bottom-end" shadow="md" width={256}>
@@ -28,14 +31,21 @@ export const UserMenu: React.FC = () => {
                 />
               </div>
               <div className="text-sm">
-                <div className="font-bold line-clamp-1 text-gray-700">{"Akhmad Sugiannoor"}</div>
-                <div className="line-clamp-1 text-gray-600 text-xs">{"Sugiannoor2003@gmail.com"}</div>
+                <div className="font-bold line-clamp-1 text-gray-700">
+                  {"Akhmad Sugiannoor"}
+                </div>
+                <div className="line-clamp-1 text-gray-600 text-xs">
+                  {"Sugiannoor2003@gmail.com"}
+                </div>
               </div>
             </div>
           </Menu.Item>
           <Menu.Divider />
-          <Menu.Item >
-            <div className="flex items-center gap-x-2 w-full transition text-sm text-gray-700">
+          <Menu.Item>
+            <div
+              className="flex items-center gap-x-2 w-full transition text-sm text-gray-700"
+              onClick={handleLogout}
+            >
               <IconLogout className="w-5 h-5" />
               <div className="font-semibold">Sign Out</div>
             </div>

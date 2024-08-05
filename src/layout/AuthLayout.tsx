@@ -14,7 +14,7 @@ export const AuthLayout: React.FC = () => {
 
   if (data?.role === "Admin" || data?.role === "Superadmin")
     return <Navigate to="/admin/dashboard" replace />;
-  if (data && data?.role === "Customer") return <Navigate to="/" replace />;
+  if (data?.role === "Customer") return <Navigate to="/" replace />;
 
   return (
     <Suspense fallback={<LoadingScreen />}>

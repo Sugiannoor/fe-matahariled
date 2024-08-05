@@ -1,7 +1,8 @@
 export type User = {
-  user_id: number;
+  full_name: string;
+  role: string;
+  email: string;
+  password: string;
   username: string;
-  discord: string;
-  instagram: string;
-  role: "Customer" | "Admin";
+  phone_number: string;
 };

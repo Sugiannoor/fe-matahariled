@@ -24,11 +24,11 @@ import {
   IconFingerprint,
   IconCoin,
   IconLogout,
-  IconUser,
 } from "@tabler/icons-react";
 import classes from "./navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Authorization } from "@/features/auth/components/Authorization";
+import { logout } from "@/features/auth/api/logout";
 
 const mockdata = [
   {
@@ -64,6 +64,9 @@ const mockdata = [
 ];
 
 export function NavbarComponent() {
+  function handleLogout() {
+    logout();
+  }
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
   const [linksOpened] = useDisclosure(false);
@@ -123,32 +126,27 @@ export function NavbarComponent() {
           </Authorization>
 
           <Authorization role={["Admin", "Customer", "SuperAdmin"]}>
-            <Menu withArrow>
-              <Menu.Target>
-                <Avatar src={"/user_default.png"} />
-              </Menu.Target>
-              <Menu.Dropdown>
-                <Menu.Label>Menu Profile</Menu.Label>
-                <Menu.Item
-                  leftSection={
-                    <IconUser style={{ width: rem(14), height: rem(14) }} />
-                  }
-                >
-                  Profile
-                </Menu.Item>
-                <Menu.Item
-                  leftSection={
-                    <IconLogout style={{ width: rem(14), height: rem(14) }} />
-                  }
-                >
-                  Log Out
-                </Menu.Item>
+            <Group visibleFrom="sm" className="cursor-pointer">
+              <Menu withArrow>
+                <Menu.Target>
+                  <Avatar src={"/user_default.png"} />
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Label>Menu Profile</Menu.Label>
+                  <Menu.Item
+                    onClick={handleLogout}
+                    leftSection={
+                      <IconLogout style={{ width: rem(14), height: rem(14) }} />
+                    }
+                  >
+                    Log Out
+                  </Menu.Item>
 
-                <Menu.Divider />
-              </Menu.Dropdown>
-            </Menu>
+                  <Menu.Divider />
+                </Menu.Dropdown>
+              </Menu>
+            </Group>
           </Authorization>
-
           <Burger
             opened={drawerOpened}
             color="dark"
@@ -196,11 +194,24 @@ export function NavbarComponent() {
           </a>
 
           <Divider my="sm" />
-          <Authorization role={["-Customer", "-Admin", "-SuperAdmin"]}>
+          <Authorization role={["-Customer", "-Admin"]}>
             <Group justify="center" grow pb="xl" px="md">
               <Button onClick={() => navigate("/login")}>Log in</Button>
-              <Button variant="default" onClick={() => navigate("/login")}>
-                Sign up
+            </Group>
+          </Authorization>
+          <div className="grid grid-cols-2">
+            <Authorization role={["Admin"]}>
+              <Group justify="center" grow pb="xl" px="md">
+                <Button onClick={() => navigate("/admin/dashboard")}>
+                  Dashboard
+                </Button>
+              </Group>
+            </Authorization>
+          </div>
+          <Authorization role={["Customer", "Admin"]}>
+            <Group justify="center" grow pb="xl" px="md">
+              <Button color="red" onClick={handleLogout}>
+                Logout
               </Button>
             </Group>
           </Authorization>

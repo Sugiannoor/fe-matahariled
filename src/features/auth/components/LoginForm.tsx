@@ -15,7 +15,7 @@ import { IconX } from "@tabler/icons-react";
 export function LoginForm() {
   const form = useForm({
     initialValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
@@ -50,11 +50,12 @@ export function LoginForm() {
       </Text>
       <form onSubmit={handleSubmit}>
         <TextInput
-          label="username"
-          placeholder="Masukan Username"
+          label="Email"
+          type="email"
+          placeholder="Masukan Email"
           size="md"
           required
-          {...form.getInputProps("username")}
+          {...form.getInputProps("email")}
         />
         <PasswordInput
           label="Password"
